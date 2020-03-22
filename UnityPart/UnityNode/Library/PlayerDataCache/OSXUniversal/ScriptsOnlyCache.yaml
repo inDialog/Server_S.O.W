@@ -3,11 +3,11 @@ ScriptsOnlyBuild:
     Assembly-CSharp-Editor.dll:
     - WarriorBundle1FREE.ReviewConfig
     Assembly-CSharp.dll:
-    - ClickMove
+    - MoveII
     - Navigator
     - Network
     - NetworkMove
-    - ScreenClicker
+    - SendState
     - SocketIO.SocketIOComponent
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -16,7 +16,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
   sceneClasses:
-    Assets/UnityNode/Scenes/sds.unity:
+    Assets/UnityNode/Scenes/Basic.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -35,53 +35,35 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
-    - Class: 74
+    - Class: 65
       Script: {instanceID: 0}
     - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
-    - Class: 90
-      Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11478}
-    - Class: 114
-      Script: {instanceID: 11936}
-    - Class: 114
       Script: {instanceID: 12088}
-    - Class: 114
-      Script: {instanceID: 12598}
     - Class: 114
       Script: {instanceID: 12800}
     - Class: 114
       Script: {instanceID: 12952}
+    - Class: 114
+      Script: {instanceID: 14954}
+    - Class: 114
+      Script: {instanceID: 16234}
     - Class: 115
       Script: {instanceID: 0}
-    - Class: 124
-      Script: {instanceID: 0}
-    - Class: 136
-      Script: {instanceID: 0}
-    - Class: 137
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
-    - Class: 195
-      Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 238
-      Script: {instanceID: 0}
-    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -446,7 +428,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 8fb8e4c69c8073672555a4cb8fbd3156
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Navigator
@@ -552,7 +534,19 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: fdfe8559b082f8e8ffbe1ce7cc06df68
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MoveII
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SendState
   platform: 2
   scenePathNames:
-  - Assets/UnityNode/Scenes/sds.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/ds/UnityNode/Node_test.app
+  - Assets/UnityNode/Scenes/Basic.unity
+  playerPath: /Users/segalcalin/Documents/GitHub/Server_S.O.W/Node_test_cube.app

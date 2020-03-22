@@ -8,7 +8,7 @@ public class ClickMove : MonoBehaviour, IClickable {
 	public void OnClick (RaycastHit hit) {
 		Navigator navPos = player.GetComponent<Navigator>();
 		NetworkMove netMove = player.GetComponent<NetworkMove>();
-		navPos.NavigateTo(hit.point);
+		//navPos.NavigateTo(hit.point);
 		netMove.OnMove(hit.point);
 	}
 }
