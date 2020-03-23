@@ -40,10 +40,10 @@ public class MoveII : MonoBehaviour
 		_rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
 
 		// Jump or fall
-		//if (Input.GetButton("Jump")) ;
-		//_rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-		//else if (grounded)
-		//	GetComponent<Rigidbody>().AddForce(new Vector3(0, -gravity * GetComponent<Rigidbody>().mass, 0));
+		if ( Input.GetButton("Jump"))
+			_rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+		else if(grounded)
+			GetComponent<Rigidbody>().AddForce(new Vector3(0, -gravity * GetComponent<Rigidbody>().mass, 0));
 		grounded = false;
 		_rigidbody.isKinematic = false; 
 

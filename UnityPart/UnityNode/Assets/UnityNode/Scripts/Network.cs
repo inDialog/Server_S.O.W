@@ -11,7 +11,7 @@ public class Network : MonoBehaviour {
 
     public GameObject myPlayer;
 
-    Dictionary<string, GameObject> players;
+     Dictionary<string, GameObject> players;
 
 	void Start () {
         socket = GetComponent<SocketIOComponent>();
@@ -36,7 +36,7 @@ public class Network : MonoBehaviour {
         GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
         if (e.data["x"]){
-            Vector3 movePosition = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
+            Vector3 movePosition = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
 
             Navigator navigatePos = player.GetComponent<Navigator>();
 
@@ -48,14 +48,17 @@ public class Network : MonoBehaviour {
     }
     private void OnMove(SocketIOEvent e)
     {
-        Debug.Log("Player is moving " + e.data);
-
-        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
-
+        //Debug.Log("Player is moving " + e.data);
+        //print(players[e.data["id"].ToString()]);
         var player = players[e.data["id"].ToString()];
 
-        Navigator navigatePos = player.GetComponent<Navigator>();
+        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
+        //var player = players[e.data["id"].ToString()];
+        print("sd");
 
+        Debug.Log(position +"Positon");
+
+        Navigator navigatePos = player.GetComponent<Navigator>();
         navigatePos.NavigateTo(position);
     }
 
@@ -70,7 +73,7 @@ public class Network : MonoBehaviour {
     {
         Debug.Log("Updating position: "+ e.data);
 
-        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
+        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
 
         var player = players[e.data["id"].ToString()];
 
@@ -94,6 +97,6 @@ public class Network : MonoBehaviour {
     }
 
 	public static string VectorToJson(Vector3 vector){
-		return string.Format(@"{{""x"":""{0}"", ""y"":""{1}""}}", vector.x, vector.z);
+        return string.Format(@"{{""x"":""{0}"", ""y"":""{1}"",""z"":""{2}""}}", vector.x, vector.y, vector.z);
 	}
 }
