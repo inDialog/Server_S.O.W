@@ -39,7 +39,7 @@ public class Network : MonoBehaviour
 
         if (e.data["x"])
         {
-            Debug.Log(GetFloatFromJson(e.data, "z"));
+            //Debug.Log(GetFloatFromJson(e.data, "z"));
             Vector3 movePosition = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
 
             Navigator navigatePos = player.GetComponent<Navigator>();
