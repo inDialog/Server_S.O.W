@@ -48,13 +48,12 @@ public class Network : MonoBehaviour {
     }
     private void OnMove(SocketIOEvent e)
     {
-        //Debug.Log("Player is moving " + e.data);
+        Debug.Log("Player is moving " + e.data);
         //print(players[e.data["id"].ToString()]);
         var player = players[e.data["id"].ToString()];
 
         Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
         //var player = players[e.data["id"].ToString()];
-        print("sd");
 
         Debug.Log(position +"Positon");
 
@@ -65,18 +64,14 @@ public class Network : MonoBehaviour {
     private void OnRequestPosition(SocketIOEvent e)
     {
         Debug.Log("Server is requesting position");
-
         socket.Emit("updatePosition", new JSONObject(VectorToJson(myPlayer.transform.position)));
     }
 
     private void OnUpdatePosition(SocketIOEvent e)
     {
         Debug.Log("Updating position: "+ e.data);
-
-        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
-
         var player = players[e.data["id"].ToString()];
-
+        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
         player.transform.position = position;
     }
 
