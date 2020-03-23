@@ -152,6 +152,7 @@
     <Compile Include="Assets\UnityNode\Scripts\NetworkMove.cs" />
     <Compile Include="Assets\UnityNode\Scripts\ScreenClicker.cs" />
     <Compile Include="Assets\UnityNode\Scripts\SimpleTest\MoveII.cs" />
+    <Compile Include="Assets\UnityNode\Scripts\SimpleTest\Tower.cs" />
     <None Include="Assets\SocketIO\JSONObject\readme.txt" />
     <None Include="Assets\SocketIO\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">

@@ -29,7 +29,7 @@ public class SendState : MonoBehaviour
                 GetComponent<BoxCollider>().enabled = false;
                 navigator.target = player.transform.position;
                 socket.Emit("move", new JSONObject(Network.VectorToJson(player.transform.position)));
-
+                Debug.Log("Sending position to node " + Network.VectorToJson(player.transform.position));
             }
         }
         if (Input.GetKeyUp(KeyCode.L))

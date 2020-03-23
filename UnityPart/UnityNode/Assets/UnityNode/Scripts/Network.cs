@@ -3,7 +3,8 @@ using SocketIO;
 using System.Collections.Generic;
 using System;
 
-public class Network : MonoBehaviour {
+public class Network : MonoBehaviour
+{
 
     static SocketIOComponent socket;
 
@@ -11,9 +12,10 @@ public class Network : MonoBehaviour {
 
     public GameObject myPlayer;
 
-     Dictionary<string, GameObject> players;
+    Dictionary<string, GameObject> players;
 
-	void Start () {
+    void Start()
+    {
         socket = GetComponent<SocketIOComponent>();
         socket.On("open", OnConnected);
         socket.On("spawn", OnSpawned);
@@ -23,7 +25,7 @@ public class Network : MonoBehaviour {
         socket.On("updatePosition", OnUpdatePosition);
 
         players = new Dictionary<string, GameObject>();
-	}
+    }
 
     void OnConnected(SocketIOEvent e)
     {
@@ -35,8 +37,10 @@ public class Network : MonoBehaviour {
         Debug.Log("Player spawned" + e.data);
         GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
-        if (e.data["x"]){
-            Vector3 movePosition = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
+        if (e.data["x"])
+        {
+            Debug.Log(GetFloatFromJson(e.data, "z"));
+            Vector3 movePosition = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
 
             Navigator navigatePos = player.GetComponent<Navigator>();
 
@@ -49,29 +53,31 @@ public class Network : MonoBehaviour {
     private void OnMove(SocketIOEvent e)
     {
         Debug.Log("Player is moving " + e.data);
-        //print(players[e.data["id"].ToString()]);
-        var player = players[e.data["id"].ToString()];
 
         Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
-        //var player = players[e.data["id"].ToString()];
 
-        Debug.Log(position +"Positon");
+        var player = players[e.data["id"].ToString()];
 
         Navigator navigatePos = player.GetComponent<Navigator>();
+
         navigatePos.NavigateTo(position);
     }
 
     private void OnRequestPosition(SocketIOEvent e)
     {
         Debug.Log("Server is requesting position");
+
         socket.Emit("updatePosition", new JSONObject(VectorToJson(myPlayer.transform.position)));
     }
 
     private void OnUpdatePosition(SocketIOEvent e)
     {
-        Debug.Log("Updating position: "+ e.data);
+        Debug.Log("Updating position: " + e.data);
+
+        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"));
+
         var player = players[e.data["id"].ToString()];
-        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), GetFloatFromJson(e.data, "y"), GetFloatFromJson(e.data, "z"));
+
         player.transform.position = position;
     }
 
@@ -91,7 +97,14 @@ public class Network : MonoBehaviour {
         return float.Parse(data[key].ToString().Replace("\"", ""));
     }
 
-	public static string VectorToJson(Vector3 vector){
+    public static string VectorToJson(Vector3 vector)
+    {
+        //return string.Format(@"{{""x"":""{0}"", ""y"":""{1}""}}", vector.x, vector.z);
         return string.Format(@"{{""x"":""{0}"", ""y"":""{1}"",""z"":""{2}""}}", vector.x, vector.y, vector.z);
-	}
-}
+
+    }    }
+
+//    public static string VectorToJson(Vector3 vector)
+//{
+//    return string.Format(@"{{""x"":""{0}"", ""y"":""{1}"",""z"":""{2}""}}", vector.x, vector.y, vector.z);
+//}
