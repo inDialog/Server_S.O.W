@@ -55,5 +55,6 @@ namespace SocketIO
 		{
 			return string.Format("[Packet: enginePacketType={0}, socketPacketType={1}, attachments={2}, nsp={3}, id={4}, json={5}]", enginePacketType, socketPacketType, attachments, nsp, id, json);
 		}
+        
 	}
 }

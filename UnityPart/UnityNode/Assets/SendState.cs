@@ -6,50 +6,70 @@ using SocketIO;
 public class SendState : MonoBehaviour
 {
     //public SocketIOComponent socket;
-
-    SocketIOComponent socket;
-    GameObject player;
     Navigator navigator;
-    bool active;
+    SocketIOComponent socket;
+    public  GameObject master;
+    public Tower thisTower;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        thisTower = new Tower();
         socket = FindObjectOfType<SocketIOComponent>();
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
         navigator = GetComponent<Navigator>();
+        //socket.Emit("RequestState");
+
+        master = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.L))
-        {
-            if (active)
-            {
-                GetComponent<BoxCollider>().enabled = false;
-                navigator.target = player.transform.position;
-                socket.Emit("move", new JSONObject(Network.VectorToJson(player.transform.position)));
-                Debug.Log("Sending position to node " + Network.VectorToJson(player.transform.position));
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.L))
-        {
-            active = false;
-            GetComponent<BoxCollider>().enabled = true;
+//        Debug.Log(
+//thisTower.towerKey);
+        if (master != null)
+            thisTower.stateOf = master.GetComponent<PlayerState>().playerState;
 
+        switch (thisTower.stateOf)
+        {
+            case "Locked":
+                GetComponent<BoxCollider>().enabled = true;
+                master = null;
+
+                break;
+
+            case "Neutral":
+                GetComponent<BoxCollider>().enabled = true;
+                //master = null;
+
+                break;
+
+            case "Fallow":
+                GetComponent<BoxCollider>().enabled = false;
+
+                navigator.target = master.transform.position;
+                JSONObject EMIT = new JSONObject(Network.VectorToJsonWithId(master.transform.position, thisTower.towerKey));
+                socket.Emit("move", EMIT);
+                print(EMIT);
+                break;
+
+            default:
+                break;
         }
+   
 
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player)
-            active = true;
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerState _player = collision.gameObject.GetComponent<PlayerState>();
+            if (thisTower.playerKey == _player._playerKey)
+            {
+                master = collision.gameObject;
+                //_player.playerState = "Neutral";
+                Debug.Log(thisTower.stateOf);
+            }
+        }
     }
-
-    //private void OnTriggerEnter(Collider collision)
-    //{
-    //    if (collision.gameObject == player)
-    //        active = true;
-
-    //}
 }
+

@@ -73,7 +73,7 @@ namespace SocketIO
 		private Dictionary<string, List<Action<SocketIOEvent>>> handlers;
 		private List<Ack> ackList;
 
-		private int packetId;
+		public  int packetId;
 
 		private object eventQueueLock;
 		private Queue<SocketIOEvent> eventQueue;
@@ -229,9 +229,11 @@ namespace SocketIO
 
 		public void Emit(string ev, JSONObject data)
 		{
+          
+			//Debug.Log(data["id"].ToString());
 			EmitMessage(-1, string.Format("[\"{0}\",{1}]", ev, data));
 		}
-
+      
 		public void Emit(string ev, JSONObject data, Action<JSONObject> action)
 		{
 			EmitMessage(++packetId, string.Format("[\"{0}\",{1}]", ev, data));
@@ -290,6 +292,8 @@ namespace SocketIO
 
 		private void EmitMessage(int id, string raw)
 		{
+			//Debug.Log(raw);
+
 			EmitPacket(new Packet(EnginePacketType.MESSAGE, SocketPacketType.EVENT, 0, "/", id, new JSONObject(raw)));
 		}
 
@@ -304,10 +308,14 @@ namespace SocketIO
 			#if SOCKET_IO_DEBUG
 			debugMethod.Invoke("[SocketIO] " + packet);
 			#endif
-			
-			try {
+
+			try
+			{
 				ws.Send(encoder.Encode(packet));
-			} catch(SocketIOException ex) {
+				//Debug.Log(encoder.Encode(packet));
+
+			}
+			catch (SocketIOException ex) {
 				#if SOCKET_IO_DEBUG
 				debugMethod.Invoke(ex.ToString());
 				#endif
@@ -317,6 +325,7 @@ namespace SocketIO
 		private void OnOpen(object sender, EventArgs e)
 		{
 			EmitEvent("open");
+
 		}
 
 		private void OnMessage(object sender, MessageEventArgs e)
@@ -342,6 +351,8 @@ namespace SocketIO
 			#endif
 			sid = packet.json["sid"].str;
 			EmitEvent("open");
+			//EmitEvent("getId");
+
 		}
 
 		private void HandlePing()

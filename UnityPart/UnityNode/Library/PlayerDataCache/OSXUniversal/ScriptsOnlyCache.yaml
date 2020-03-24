@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - Navigator
     - Network
     - NetworkMove
+    - PlayerState
     - SendState
     - SocketIO.SocketIOComponent
     Unity.Rider.Editor.dll:
@@ -48,15 +49,17 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 12038}
+      Script: {instanceID: 11312}
     - Class: 114
-      Script: {instanceID: 12090}
+      Script: {instanceID: 12042}
     - Class: 114
-      Script: {instanceID: 12592}
+      Script: {instanceID: 12096}
     - Class: 114
-      Script: {instanceID: 12804}
+      Script: {instanceID: 12598}
     - Class: 114
-      Script: {instanceID: 12956}
+      Script: {instanceID: 12810}
+    - Class: 114
+      Script: {instanceID: 12962}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -108,6 +111,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: d0110c8f80978f8b67b371e3870e1120
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerState
   - hash:
       serializedVersion: 2
       Hash: 72712369a7c681ad84fc255a5ec0b333
@@ -380,7 +389,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: eb24bdcc97e240db01be641d22dcfca7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SendState
@@ -549,4 +558,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/UnityNode/Scenes/Basic.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/Server_S.O.W/Node_test_cube_dev.app
+  playerPath: /Users/segalcalin/Documents/GitHub/Server_S.O.W/Node_test_cube_dev_local.app
