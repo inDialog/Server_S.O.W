@@ -8,9 +8,6 @@ var players = [];
 
 io.on('connection', function(socket){
     var thisPlayerId = shortid.generate();
-
-
-
     var player = {
         id: thisPlayerId,
         key:"",
@@ -21,7 +18,6 @@ io.on('connection', function(socket){
         r:0,
         g:0,
         b:0
-
     }
 
     players[thisPlayerId] = player;
@@ -43,32 +39,22 @@ io.on('connection', function(socket){
 	socket.on('move', function(data) {
         // data.id = thisPlayerId;
     	console.log('Client moved', JSON.stringify(data));
-
         players[data.id].x = data.x;
         players[data.id].y = data.y;
         players[data.id].z = data.z;
-       
-
-
         // console.log(players);
-
         socket.broadcast.emit('move', players[data.id]);
 	});
 
     socket.on('updatePosition', function(data){
         console.log("Update position: ", data);
-
         data.id = thisPlayerId;
-
         socket.broadcast.emit('updatePosition', data);
     });
 
-    
     socket.on('disconnect', function() {
         console.log('Client disconnected');
-
         // delete players[thisPlayerId];
-
         // socket.broadcast.emit('disconnected', {id: thisPlayerId});
     });
 
