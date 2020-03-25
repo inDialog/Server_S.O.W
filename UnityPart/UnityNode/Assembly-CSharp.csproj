@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="Assets\PlayerState.cs" />
     <Compile Include="Assets\RespownObject.cs" />
-    <Compile Include="Assets\SendState.cs" />
     <Compile Include="Assets\SocketIO\JSONObject\JSONObject.cs" />
     <Compile Include="Assets\SocketIO\JSONObject\JSONTemplates.cs" />
     <Compile Include="Assets\SocketIO\JSONObject\VectorTemplates.cs" />
@@ -146,6 +145,7 @@
     <Compile Include="Assets\SocketIO\WebsocketSharp\WebSocketFrame.cs" />
     <Compile Include="Assets\SocketIO\WebsocketSharp\WebSocketState.cs" />
     <Compile Include="Assets\SocketIO\WebsocketSharp\WebSocketStream.cs" />
+    <Compile Include="Assets\TowerState.cs" />
     <Compile Include="Assets\UnityNode\Scripts\ClickFollow.cs" />
     <Compile Include="Assets\UnityNode\Scripts\ClickMove.cs" />
     <Compile Include="Assets\UnityNode\Scripts\IClickable.cs" />

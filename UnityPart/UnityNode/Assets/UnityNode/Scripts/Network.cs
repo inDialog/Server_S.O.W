@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections;
 /// <summary>
-/// 1. ID -  the key of the player from the server 
+/// 1. ID -  the key of the tower from the server 
 /// 2. KEY -  the local key of the user
 /// 3. myColor - random color atributed to user and  to the towers
 /// </summary>
@@ -14,9 +14,9 @@ public class Network : MonoBehaviour
 
     static SocketIOComponent socket;
 
-    public GameObject playerPrefab;
-    public GameObject myPlayer;
-    public GameObject MainPlayer;
+    public GameObject towerPrefab;
+    public GameObject newTower;
+    public GameObject player;
 
     int lastIndex;
     Color32 myColor;
@@ -34,8 +34,9 @@ public class Network : MonoBehaviour
 
         myColor = new Color32((byte)PlayerPrefs.GetFloat("R"), (byte)PlayerPrefs.GetFloat("G"), (byte)PlayerPrefs.GetFloat("B"), (byte)225);
         players = new Dictionary<string, GameObject>();
-        myPlayer.GetComponent<Renderer>().material.SetColor("_EmissionColor", myColor);
-        MainPlayer.GetComponent<Renderer>().material.SetColor("_EmissionColor", myColor);
+        newTower.GetComponent<Renderer>().material.SetColor("_EmissionColor", myColor);
+
+        player.GetComponent<Renderer>().material.SetColor("_EmissionColor", myColor);
     }
 
     void OnConnected(SocketIOEvent e)
@@ -46,19 +47,19 @@ public class Network : MonoBehaviour
     void GetKey(SocketIOEvent e)
     {
         string id = e.data["id"].ToString().Replace("\"", "");
-        FindObjectOfType<SendState>().thisTower.towerKey = id;
+        FindObjectOfType<TowerState>().thisTower.TowerKey = id;
 
-        if (PlayerPrefs.GetString("key").Length < 6)
+        if (PlayerPrefs.GetString("key").Length < 2)
         {
             PlayerPrefs.SetString("key", id);
             FindObjectOfType<PlayerState>()._playerKey = id;
-            myPlayer.GetComponent<SendState>().thisTower.playerKey = id;
+            newTower.GetComponent<TowerState>().thisTower.PlayerKey = id;
         }
         else
         {
             id = PlayerPrefs.GetString("key");
             FindObjectOfType<PlayerState>()._playerKey = id;
-            myPlayer.GetComponent<SendState>().thisTower.playerKey = id;
+            newTower.GetComponent<TowerState>().thisTower.PlayerKey = id;
             print(id);
         }
         socket.Emit("SetKey", new JSONObject(string.Format("[\"{0}\"]", id)));
@@ -73,8 +74,9 @@ public class Network : MonoBehaviour
     void OnSpawned(SocketIOEvent e)
     {
         Debug.Log("Player spawned" + e.data);
-        GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-        player.GetComponent<SendState>().thisTower.towerKey = e.data["id"].ToString().Replace("\"", "");
+
+        GameObject player = Instantiate(towerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+        player.GetComponent<TowerState>().thisTower.TowerKey = e.data["id"].ToString().Replace("\"", "");
 
         if (e.data["x"])
         {
@@ -85,9 +87,9 @@ public class Network : MonoBehaviour
         players.Add(e.data["id"].ToString(), player);
 
         string tempKey = e.data["key"].ToString().Replace("\"", "").Replace("[", "").Replace("]", "");
-        if (player.GetComponent<SendState>())
+        if (player.GetComponent<TowerState>())
         {
-            player.GetComponent<SendState>().thisTower.playerKey = tempKey;
+            player.GetComponent<TowerState>().thisTower.PlayerKey = tempKey;
             //Debug.Log("playerKey   " + tempKey);
         }
 
@@ -101,11 +103,11 @@ public class Network : MonoBehaviour
             if (curentIndex > lastIndex)
                 FindObjectOfType<PlayerState>().respawnPos = player.transform;
             lastIndex = curentIndex;
-            Debug.Log("curentIndex   " + curentIndex);
+            //Debug.Log("curentIndex   " + curentIndex);
         }
         ///////////////////////////////////////////////////////////////////////////////////////// applay unique color to tower 
         player.GetComponent<Renderer>().material.SetColor("_EmissionColor", ColorFromJson(e));
-        Debug.Log("Player Count: " + players.Count);
+        //Debug.Log("Player Count: " + players.Count);
     }
     private void OnMove(SocketIOEvent e)
     {
@@ -124,7 +126,7 @@ public class Network : MonoBehaviour
     {
         Debug.Log("Server is requesting position");
 
-        socket.Emit("updatePosition", new JSONObject(VectorToJson(myPlayer.transform.position)));
+        socket.Emit("updatePosition", new JSONObject(VectorToJson(newTower.transform.position)));
     }
 
     private void OnUpdatePosition(SocketIOEvent e)

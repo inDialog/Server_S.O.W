@@ -12,10 +12,6 @@ public class MoveII : MonoBehaviour
 	private bool grounded = false;
 	public Rigidbody _rigidbody;
 
-	//public List<GameObject> pastSelcted = new List<GameObject>();
-
-	public int numberOfFallowers;
-
 	void Awake()
 	{
 		_rigidbody.freezeRotation = true;

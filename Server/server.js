@@ -39,11 +39,15 @@ io.on('connection', function(socket){
 	socket.on('move', function(data) {
         // data.id = thisPlayerId;
     	console.log('Client moved', JSON.stringify(data));
+        if (typeof data.x !== 'undefined') {
+    // the variable is defined
+
         players[data.id].x = data.x;
         players[data.id].y = data.y;
         players[data.id].z = data.z;
         // console.log(players);
         socket.broadcast.emit('move', players[data.id]);
+    }
 	});
 
     socket.on('updatePosition', function(data){
@@ -54,8 +58,12 @@ io.on('connection', function(socket){
 
     socket.on('disconnect', function() {
         console.log('Client disconnected');
-        // delete players[thisPlayerId];
-        // socket.broadcast.emit('disconnected', {id: thisPlayerId});
+        if(players[thisPlayerId].x==0&&players[thisPlayerId].y==0&&players[thisPlayerId].z==0)
+        {
+        delete players[thisPlayerId];
+        socket.broadcast.emit('disconnected', {id: thisPlayerId});
+        }
+
     });
 
     socket.on('SetKey', function(data) {

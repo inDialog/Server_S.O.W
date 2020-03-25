@@ -305,7 +305,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: 18276cee0543fd305cd00ff5a56aec86
+      Hash: 2d999117abe8b9370b2ec60f041455c6
     assemblyName: Assembly-CSharp.dll
     namespaceName: SocketIO
     className: SocketIOComponent
@@ -425,7 +425,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 4debe0970985942494b42d2bcbd4ef97
+      Hash: 8d8399bb247f647e3597a70221ecad19
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Network

@@ -9,10 +9,55 @@ public class PlayerState : MonoBehaviour
     public bool active;
   
     public Transform respawnPos;
+    public GameObject newTower;
+   public  List<GameObject> TowersFowlowing = new List<GameObject>();
 
     private void Start()
     {
-        if (PlayerPrefs.GetFloat("R")==0)
+        CreateColor();
+    }
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.L))
+        {
+            playerState = "Fallow";
+            TowerState towerState = newTower.GetComponent<TowerState>();
+            if (towerState.thisTower.stateOf != "Locked")
+            {
+                towerState.thisTower.Master = this.transform.gameObject;
+                if(!TowersFowlowing.Contains(newTower))
+                TowersFowlowing.Add(newTower);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            foreach (var towers in TowersFowlowing)
+            {
+                towers.GetComponent<TowerState>().thisTower.Master = null;
+            }
+            TowersFowlowing.Clear();
+            playerState = "Neutral";
+
+
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            playerState = "Locked";
+        }
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            playerState = "Neutral";
+        }
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            RestartKey();
+        }
+        RespawnPosition();
+    }
+  
+    void CreateColor()
+    {
+        if (PlayerPrefs.GetFloat("R") == 0)
         {
             int r = UnityEngine.Random.Range(10, 220);
             int b = UnityEngine.Random.Range(10, 220);
@@ -24,44 +69,14 @@ public class PlayerState : MonoBehaviour
             print(_myColor);
         }
     }
-    void Update()
-        {
-        if (Input.GetKey(KeyCode.L))
-        {
-
-            playerState = "Fallow";
-
-        }
-        if (Input.GetKeyUp(KeyCode.L))
-        {
-            playerState = "Neutral";
-        }
-        if (Input.GetKey(KeyCode.K))
-        {
-            if (active)
-            {
-                playerState = "Locked";
-                active = false;
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.K))
-        {
-            playerState = "Neutral";
-            active = true;
-
-        }
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            PlayerPrefs.SetString("key", "");
-            PlayerPrefs.SetInt("NrOfConnections", 0);
-            PlayerPrefs.SetFloat("R", 0);
-            PlayerPrefs.SetFloat("G", 0);
-            PlayerPrefs.SetFloat("B", 0);
-
-        }
-        RespawnPosition();
+    void RestartKey()
+    {
+        PlayerPrefs.SetString("key", "");
+        PlayerPrefs.SetInt("NrOfConnections", 0);
+        PlayerPrefs.SetFloat("R", 0);
+        PlayerPrefs.SetFloat("G", 0);
+        PlayerPrefs.SetFloat("B", 0);
     }
-    
     void RespawnPosition()
     {
         if (respawnPos != null)
@@ -69,18 +84,23 @@ public class PlayerState : MonoBehaviour
             float step = 5 * Time.deltaTime; // calculate distance to move
             Vector3 targget = respawnPos.position - respawnPos.up * -1;
             transform.position = Vector3.MoveTowards(transform.position, targget, step);
-            GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<Collider>().isTrigger = true;
-
+            GhostMode(true);
             if (transform.position == targget)
             {
-                GetComponent<Rigidbody>().isKinematic = false;
-                GetComponent<Collider>().isTrigger = false;
-
+                GhostMode(false);
                 respawnPos = null;
-
+            }
+            else if(Input.anyKey)
+            {
+                GhostMode(false);
+                respawnPos = null;
             }
         }
+    }
+    void GhostMode(bool state)
+    {
+        GetComponent<Rigidbody>().isKinematic = state;
+        GetComponent<Collider>().isTrigger = state;
     }
 
 

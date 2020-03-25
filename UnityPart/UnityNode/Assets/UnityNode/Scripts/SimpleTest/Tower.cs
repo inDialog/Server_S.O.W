@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Tower 
 {
-	public string playerKey { get; set; }
-    public string towerKey { get; set; }
+	public string PlayerKey { get; set; }
+    public string TowerKey { get; set; }
+    public GameObject Master { get; set; }
+
 
     public string stateOf { get; set; }
 
     public Tower(string _playerKey, string _stateOf)
     {
-        playerKey = _playerKey;
+        PlayerKey = _playerKey;
         stateOf = _stateOf;
     }
     public Tower()
