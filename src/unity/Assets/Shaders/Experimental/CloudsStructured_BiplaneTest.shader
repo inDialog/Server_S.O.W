@@ -533,8 +533,8 @@ Shader "VolSample/Clouds Struct 3D Biplane" {
 
 			if( z == ZFAR )
 			{
-				// sky
-				backCol = skyColor( rd );
+				
+				backCol = skyColor( rd )
 			}
 			else
 			{
