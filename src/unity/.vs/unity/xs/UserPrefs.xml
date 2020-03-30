@@ -1,14 +1,13 @@
 ﻿<Properties StartupConfiguration="{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/Experimental/CloudsStructured3D_VS_EXPERIMENTAL.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/VolumeRender.shader">
     <Files>
-      <File FileName="Assets/Shaders/VolumeRender.shader" Line="128" Column="19" />
-      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" Line="67" Column="6" />
-      <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" Line="64" Column="16" />
+      <File FileName="Assets/Shaders/VolumeRender.shader" Line="178" Column="21" />
+      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" Line="121" Column="34" />
+      <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" Line="64" Column="46" />
       <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsBase.cs" Line="13" Column="28" />
-      <File FileName="Assets/Scripts/VolRenderSettings.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MoveII.cs" Line="1" Column="1" />
-      <File FileName="Assets/Shaders/Experimental/CloudsStructured_BiplaneTest.shader" Line="566" Column="25" />
-      <File FileName="Assets/Shaders/Experimental/CloudsStructured3D_VS_EXPERIMENTAL.shader" Line="282" Column="47" />
+      <File FileName="Assets/Shaders/Scenes/SceneFogCube.cginc" Line="74" Column="1" />
+      <File FileName="Assets/Shaders/RayMarchCore.cginc" Line="12" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -81,10 +81,8 @@
     <None Include="Assets\Shaders\Depth\SaveOutCamDepths.shader" />
     <None Include="Assets\Shaders\Scenes\SceneClouds.cginc" />
     <None Include="Assets\Shaders\Scenes\SceneFogCube.cginc" />
-    <None Include="Assets\Shaders\Experimental\CloudsStructured3D_VS_EXPERIMENTAL.shader" />
     <None Include="Assets\Shaders\Depth\Tests\SOURCE.txt" />
     <None Include="Assets\Shaders\VolumeRender.shader" />
-    <None Include="Assets\Shaders\Experimental\CloudsStructured_BiplaneTest.shader" />
     <None Include="Assets\Shaders\Camera.cginc" />
     <None Include="Assets\Shaders\Depth\Tests\ReceiveShadow.shader" />
     <None Include="Assets\Shaders\Scenes\SceneFogSpotlight.cginc" />
