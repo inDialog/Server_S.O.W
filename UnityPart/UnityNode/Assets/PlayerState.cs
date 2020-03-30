@@ -12,7 +12,7 @@ public class PlayerState : MonoBehaviour
     public GameObject newTower;
    public  List<GameObject> TowersFowlowing = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
     {
         CreateColor();
     }
@@ -22,7 +22,7 @@ public class PlayerState : MonoBehaviour
         {
             playerState = "Fallow";
             TowerState towerState = newTower.GetComponent<TowerState>();
-            if (towerState.thisTower.stateOf != "Locked")
+            if (towerState.thisTower.TowerState != "Locked")
             {
                 towerState.thisTower.Master = this.transform.gameObject;
                 if(!TowersFowlowing.Contains(newTower))
@@ -34,6 +34,8 @@ public class PlayerState : MonoBehaviour
             foreach (var towers in TowersFowlowing)
             {
                 towers.GetComponent<TowerState>().thisTower.Master = null;
+                towers.GetComponent<TowerState>().thisTower.TowerState = "Neutral";
+
             }
             TowersFowlowing.Clear();
             playerState = "Neutral";
@@ -66,7 +68,7 @@ public class PlayerState : MonoBehaviour
             PlayerPrefs.SetFloat("R", r);
             PlayerPrefs.SetFloat("G", g);
             PlayerPrefs.SetFloat("B", b);
-            print(_myColor);
+            print(r);
         }
     }
     void RestartKey()

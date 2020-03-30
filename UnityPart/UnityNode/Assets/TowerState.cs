@@ -10,15 +10,16 @@ public class TowerState : MonoBehaviour
     public Tower thisTower;
     public Vector3 colisionPoint;
     bool firstClik;
+    public int nrInLine;
+    public int myId;
 
-    private IEnumerator coroutine;
     // Start is called before the first frame update
     void Awake()
     {
         thisTower = new Tower();
         socket = FindObjectOfType<SocketIOComponent>();
         navigator = GetComponent<Navigator>();
-        thisTower.stateOf =  "Neutral";
+        thisTower.TowerState =  "Neutral";
         thisTower.Master = null;
 
 
@@ -27,22 +28,29 @@ public class TowerState : MonoBehaviour
     {
         if (thisTower.Master != null)
         {
-            UpdatePosition(thisTower.Master.transform.position);
-            GetComponent<BoxCollider>().isTrigger = true;
+            UpdatePosition(thisTower.Master.transform.position - thisTower.Master.transform.forward  * (nrInLine+1));
+            transform.rotation = thisTower.Master.transform.rotation;
+            GetComponent<MeshCollider>().isTrigger = true;
+            colisionPoint = Vector3.zero;
+            thisTower.TowerState = "Fallow";
+
             return;
         }
         else
         {
-            if (colisionPoint != Vector3.zero & thisTower.stateOf != "Fallow")
+            if (colisionPoint != Vector3.zero & thisTower.TowerState != "Locked")
             {
                 UpdatePosition(colisionPoint);
             }
             else
             {
-                GetComponent<BoxCollider>().isTrigger = false;
+                GetComponent<MeshCollider>().isTrigger = false;
+
             }
         }
-       
+        //Debug.Log(thisTower.TowerKey);
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,40 +60,44 @@ public class TowerState : MonoBehaviour
             PlayerState playerState = collision.gameObject.GetComponent<PlayerState>();
             if (thisTower.PlayerKey == playerState._playerKey)
             {
-                if (thisTower.stateOf != "Locked")
+                if (thisTower.TowerState != "Locked")
                 {
-                    thisTower.stateOf = playerState.playerState;
+                    thisTower.TowerState = playerState.playerState;
                 }
                 if (playerState.playerState == "Locked")
                 {
                     if (firstClik == true)
                     {
-                        thisTower.stateOf = "Locked";
+                        thisTower.TowerState = "Locked";
                     }
                     else
                     {
-                        thisTower.stateOf = "Neutral";
+                        thisTower.TowerState = "Neutral";
                     }
                     firstClik = !firstClik;
                 }
 
-                if (playerState.playerState == "Fallow" & thisTower.stateOf != "Locked")
+                if (playerState.playerState == "Fallow" & thisTower.TowerState != "Locked")
                 {
-                    Debug.Log("dsd");
                     thisTower.Master = collision.gameObject;
                     if (!playerState.TowersFowlowing.Contains(this.gameObject))
+                    {
                         playerState.TowersFowlowing.Add(this.gameObject);
+                        nrInLine = playerState.TowersFowlowing.Count;
+                    }
+
                 }
-                Debug.Log(thisTower.stateOf);
+                Debug.Log(thisTower.TowerState);
             }
         }
        
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Tower")
         {
             colisionPoint = other.ClosestPointOnBounds(this.transform.position);
+            //Debug.Log("Contact");
         }
     }
     private void OnCollisionStay(Collision collision)
@@ -97,20 +109,24 @@ public class TowerState : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
-        //if (collision.gameObject.tag == "Tower")
-        //{
-        //    colisionPoint = Vector3.zero;
-        //}
     }
+    
     void UpdatePosition(Vector3 position)
     {
         navigator.target = position;
         //Debug.Log(EMIT);
-        if (Vector3.Distance(colisionPoint,this.transform.position)<0.2f)
+        if (Vector3.Distance(colisionPoint,this.transform.position)<0.1f)
         {
             colisionPoint = Vector3.zero;
+
         }
         socket.Emit("move", new JSONObject(Network.VectorToJsonWithId(position, thisTower.TowerKey)));
+
+    }
+
+    private void SendPosition()
+    {
+
     }
 
 

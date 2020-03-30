@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\PlayerState.cs" />
     <Compile Include="Assets\RespownObject.cs" />
     <Compile Include="Assets\SocketIO\JSONObject\JSONObject.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Assets\SocketIO\WebsocketSharp\WebSocketFrame.cs" />
     <Compile Include="Assets\SocketIO\WebsocketSharp\WebSocketState.cs" />
     <Compile Include="Assets\SocketIO\WebsocketSharp\WebSocketStream.cs" />
+    <Compile Include="Assets\TowerActions.cs" />
     <Compile Include="Assets\TowerState.cs" />
     <Compile Include="Assets\UnityNode\Scripts\ClickFollow.cs" />
     <Compile Include="Assets\UnityNode\Scripts\ClickMove.cs" />

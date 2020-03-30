@@ -1,20 +1,23 @@
 ﻿<Properties StartupConfiguration="{97666C8C-12B7-7026-6FA8-8A416224332C}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityNode/Scripts/SimpleTest/MoveII.cs">
     <Files>
-      <File FileName="Assets/PlayerState.cs" Line="51" Column="3" IsPinned="True" />
-      <File FileName="Assets/SendState.cs" Line="72" Column="17" />
-      <File FileName="Assets/UnityNode/Scripts/Network.cs" Line="111" Column="55" />
-      <File FileName="Assets/UnityNode/Scripts/SimpleTest/MoveII.cs" Line="15" Column="2" />
-      <File FileName="Assets/UnityNode/Scripts/SimpleTest/Tower.cs" Line="5" Column="20" />
+      <File FileName="Assets/TowerActions.cs" Line="22" Column="9" />
+      <File FileName="Assets/TowerState.cs" />
+      <File FileName="Assets/UnityNode/Scripts/SimpleTest/MoveII.cs" Line="36" Column="56" />
+      <File FileName="Assets/UnityNode/Scripts/SimpleTest/Tower.cs" />
+      <File FileName="Assets/UnityNode/Scripts/Network.cs" />
+      <File FileName="Assets/PlayerState.cs" />
+      <File FileName="Assets/SocketIO/WebsocketSharp/WebSocket.cs" />
+      <File FileName="Assets/SocketIO/Scripts/SocketIO/SocketIOComponent.cs" />
+      <File FileName="Assets/SocketIO/JSONObject/VectorTemplates.cs" />
+      <File FileName="Assets/CameraControl.cs" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="f856f4da-acd6-4d8c-93fa-7d398b5b90cd" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fc111e6e-95b1-43a7-a281-a362ba383422" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="/Users/segalcalin/Documents/GitHub/Server_S.O.W/UnityPart/UnityNode/Assets/SendState.cs" relfile="Assets/SendState.cs" line="6" column="23" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

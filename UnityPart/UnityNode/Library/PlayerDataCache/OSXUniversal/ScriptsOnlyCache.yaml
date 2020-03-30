@@ -6,10 +6,10 @@ ScriptsOnlyBuild:
     - MoveII
     - Navigator
     - Network
-    - NetworkMove
     - PlayerState
-    - SendState
     - SocketIO.SocketIOComponent
+    - TowerActions
+    - TowerState
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -51,16 +51,20 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11312}
     - Class: 114
-      Script: {instanceID: 12042}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 12096}
+      Script: {instanceID: 12044}
     - Class: 114
-      Script: {instanceID: 12598}
+      Script: {instanceID: 12098}
     - Class: 114
-      Script: {instanceID: 12810}
+      Script: {instanceID: 12600}
     - Class: 114
-      Script: {instanceID: 12962}
+      Script: {instanceID: 12812}
+    - Class: 114
+      Script: {instanceID: 12964}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -113,7 +117,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: d0110c8f80978f8b67b371e3870e1120
+      Hash: 0bc1a05248e41bca6a8ebce005886cc9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerState
@@ -195,6 +199,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: PhysicsRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TowerActions
   - hash:
       serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
@@ -389,10 +399,10 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: eb24bdcc97e240db01be641d22dcfca7
+      Hash: 89a0dc3ac47d17dc8e3efb71380cd3a8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: SendState
+    className: TowerState
   - hash:
       serializedVersion: 2
       Hash: 899e2d8b48415d743011a6b20b59366c
@@ -425,7 +435,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 8d8399bb247f647e3597a70221ecad19
+      Hash: 6eaf597887088926c5777c2a0e6c185a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Network
