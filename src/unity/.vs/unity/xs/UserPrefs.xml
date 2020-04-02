@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/VolRenderSettings.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveII.cs">
     <Files>
       <File FileName="Assets/Shaders/VolumeRender.shader" Line="170" Column="1" />
-      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" />
-      <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" />
-      <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsBase.cs" />
+      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" Line="160" Column="62" />
+      <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" Line="8" Column="24" />
+      <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsBase.cs" Line="90" Column="12" />
       <File FileName="Assets/Scripts/VolRenderSettings.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MoveII.cs" />
+      <File FileName="Assets/Scripts/MoveII.cs" Line="9" Column="31" />
       <File FileName="Assets/Shaders/Experimental/CloudsStructured_BiplaneTest.shader" />
       <File FileName="Assets/Shaders/Experimental/CloudsStructured3D_VS_EXPERIMENTAL.shader" />
       <File FileName="Assets/Scripts/Experimental/DDASampling.cs" />

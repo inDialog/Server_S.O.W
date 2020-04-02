@@ -11,7 +11,7 @@ public class MoveII : MonoBehaviour
 	public float jumpHeight = 2.0f;
 	private bool grounded = true;
     public Rigidbody _rigidbody;
-	float damp;
+	float jumpTime;
 
 
     void Awake()
@@ -31,35 +31,41 @@ public class MoveII : MonoBehaviour
 		Vector3 jump = Vector3.zero;
 		transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * time, 0));
 
-		if (grounded)
+
+		// Calculate how fast we should be moving
+		Vector3 targetVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
+		targetVelocity = transform.TransformDirection(targetVelocity);
+		targetVelocity *= speed;
+
+		// Apply a force that attempts to reach our target velocity
+		Vector3 velocity = _rigidbody.velocity;
+		Vector3 velocityChange = (targetVelocity - velocity);
+		velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+		velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+		velocityChange.y = 0;
+		_rigidbody.AddForce(velocityChange, ForceMode.Impulse);
+
+		// Jump
+		if (Input.GetButton("Jump"))
 		{
-			// Calculate how fast we should be moving
-			Vector3 targetVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
-			targetVelocity = transform.TransformDirection(targetVelocity);
-			targetVelocity *= speed;
+			jump = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 
-			// Apply a force that attempts to reach our target velocity
-			Vector3 velocity = _rigidbody.velocity;
-			Vector3 velocityChange = (targetVelocity - velocity);
-			velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-			velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-			velocityChange.y = 0;
-			_rigidbody.AddForce(velocityChange, ForceMode.Impulse);
-
-			// Jump
-			if (Input.GetButton("Jump"))
-			{
-				jump = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-			} else
-			{
-				jump = new Vector3(0, -gravity * _rigidbody.mass, 0);
-
-			}
 		}
+		else if (!grounded)
+		{
+			if (_rigidbody.velocity.y < 0.1f)
+				jumpTime += Time.deltaTime / 2;
+			else jumpTime = 0.5f;
+			jumpTime = Mathf.Clamp(jumpTime,0.1f, _rigidbody.mass);
+			jump = new Vector3(0, -gravity * jumpTime, 0);
+			print(jumpTime);
 
-        print(Mathf.Pow(6, 1.8f));
-		// We apply gravity manually for more tuning control
+		}
 		_rigidbody.AddForce(jump);
+
+		grounded = false;
+
+		// We apply gravity manually for more tuning control
 	}
 
 	void OnCollisionStay()
@@ -71,7 +77,7 @@ public class MoveII : MonoBehaviour
 	{
 		// From the jump height and gravity we deduce the upwards speed 
 		// for the character to reach at the apex.
-		return Mathf.Sqrt(2 * jumpHeight * gravity)*100;
+		return Mathf.Sqrt(1000 * jumpHeight * gravity);
 	}
 
 	void PusleOnLanding()
