@@ -30,7 +30,7 @@ public class ScreenCapture : MonoBehaviour
             _lastCapturedFrameCount = Time.frameCount;
 
             string screenName = _folderName + "/Screenshot" + screenShotNumber.ToString( "D5" ) + ".png";
-            UnityEngine.ScreenCapture.CaptureScreenshot( screenName );
+            UnityEngine.ScreenCapture.CaptureScreenshot( screenName ,2);
             Debug.Log( "Saved screenshot: " + screenName );
 
 			++screenShotNumber;

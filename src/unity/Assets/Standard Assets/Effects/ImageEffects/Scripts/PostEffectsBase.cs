@@ -77,17 +77,17 @@ namespace UnityStandardAssets.ImageEffects
         }
 
 
-        public virtual bool CheckResources ()
-		{
-            Debug.LogWarning ("CheckResources () for " + ToString() + " should be overwritten.");
-            return isSupported;
-        }
+  //      public virtual bool CheckResources ()
+		//{
+  //          Debug.LogWarning ("CheckResources () for " + ToString() + " should be overwritten.");
+  //          return isSupported;
+  //      }
 
 
-        protected void Start ()
-		{
-            CheckResources ();
-        }
+  //      protected void Start ()
+		//{
+  //          CheckResources ();
+  //      }
 
         protected bool CheckSupport (bool needDepth)
 		{

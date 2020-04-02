@@ -165,13 +165,14 @@ Shader "VolSample/Volume Render" {
 		#endif // STRUCTURED_SAMPLING
 
 		// add in camera render colours, if not zfar (so we exclude skybox)
-		if( depthValue <= 999. )
-		{
+	///	if( depthValue <= 999. )
+		//{
+
 			float3 bgcol = tex2Dlod( _MainTex, float4(q, 0., 0.) );
 			clouds.xyz += (1. - clouds.a) * bgcol;
 			// assume zbuffer represents opaque surface
 			clouds.a = 1.;
-		}
+	//	}
 		
 		float3 col = combineColors( clouds, ro, rd );
 

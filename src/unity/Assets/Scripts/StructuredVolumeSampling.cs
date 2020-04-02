@@ -17,7 +17,7 @@ public class StructuredVolumeSampling : UnityStandardAssets.ImageEffects.PostEff
     [Tooltip("Optional - shadow rendering camera to read shadows from.")]
     public Camera _shadowCamera;
 
-    float _forwardMotionIntegrated = 0f;
+    float _forwardMotionIntegrated = 1f;
     Vector3 _lastPos;
 
     public bool _structuredSampling = true;
@@ -38,24 +38,24 @@ public class StructuredVolumeSampling : UnityStandardAssets.ImageEffects.PostEff
         _lastPos = transform.position;
     }
 
-    void OnGUI()
-    {
-        Color guiCol = GUI.color;
-        bool guiEn = GUI.enabled;
+//    void OnGUI()
+//    {
+//        Color guiCol = GUI.color;
+//        bool guiEn = GUI.enabled;
 
-#if UNITY_EDITOR
-        // gui gets weird if you click it outside of play mode
-        if( !UnityEditor.EditorApplication.isPlaying )
-            GUI.enabled = false;
-#endif
+//#if UNITY_EDITOR
+//        // gui gets weird if you click it outside of play mode
+//        if( !UnityEditor.EditorApplication.isPlaying )
+//            GUI.enabled = false;
+//#endif
 
-        _structuredSampling = GUI.Toggle( new Rect( 5f, 5f, 150f, 25f ), _structuredSampling, "Structured Sampling" );
+//        _structuredSampling = GUI.Toggle( new Rect( 5f, 5f, 150f, 25f ), _structuredSampling, "Structured Sampling" );
 
-        if( !_structuredSampling )
-            _fixedZPinned = GUI.Toggle( new Rect( 5f, 30f, 150f, 25f ), _fixedZPinned, "Pin Samples" );
+//        if( !_structuredSampling )
+//            _fixedZPinned = GUI.Toggle( new Rect( 5f, 30f, 150f, 25f ), _fixedZPinned, "Pin Samples" );
 
-        GUI.enabled = guiEn;
-    }
+//        GUI.enabled = guiEn;
+//    }
 
     void LateUpdate()
     {
@@ -157,5 +157,5 @@ public class StructuredVolumeSampling : UnityStandardAssets.ImageEffects.PostEff
     static float halfFov_horiz_rad { get { return halfFov_vert_rad * Camera.main.aspect; } }
 
     // Not using this.
-    public override bool CheckResources() { return true; }
+    //public override bool CheckResources() { return true; } 
 }

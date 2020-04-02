@@ -11,7 +11,7 @@ public class MoveII : MonoBehaviour
 	public float jumpHeight = 2.0f;
 	private bool grounded = true;
     public Rigidbody _rigidbody;
-
+	float damp;
 
 
     void Awake()
@@ -19,15 +19,17 @@ public class MoveII : MonoBehaviour
 		_rigidbody.freezeRotation = true;
 		_rigidbody.useGravity = false;
 	}
-	private void Update()
-    {
+	//private void Update()
+	//   {
 
-        transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * 2, 0));
 
-    }
-    void FixedUpdate()
+	//   }
+	void FixedUpdate()
 	{
+		float time = Time.deltaTime * 100;
+
 		Vector3 jump = Vector3.zero;
+		transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * time, 0));
 
 		if (grounded)
 		{
@@ -42,23 +44,22 @@ public class MoveII : MonoBehaviour
 			velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
 			velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
 			velocityChange.y = 0;
-			_rigidbody.AddForce(velocityChange*2, ForceMode.Impulse);
+			_rigidbody.AddForce(velocityChange, ForceMode.Impulse);
 
 			// Jump
 			if (Input.GetButton("Jump"))
 			{
 				jump = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-			}else
-            {
+			} else
+			{
 				jump = new Vector3(0, -gravity * _rigidbody.mass, 0);
 
 			}
-
 		}
 
+        print(Mathf.Pow(6, 1.8f));
 		// We apply gravity manually for more tuning control
 		_rigidbody.AddForce(jump);
-	
 	}
 
 	void OnCollisionStay()
@@ -72,6 +73,7 @@ public class MoveII : MonoBehaviour
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(2 * jumpHeight * gravity)*100;
 	}
+
 	void PusleOnLanding()
 	{
 			_rigidbody.AddForce(new Vector3(0, gravity * _rigidbody.mass, 0), ForceMode.Impulse);
