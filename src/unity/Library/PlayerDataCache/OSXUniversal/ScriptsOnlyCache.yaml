@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-firstpass.dll:
+    - Multiplayer
     Assembly-CSharp.dll:
     - HiResScreenShots
     - MoveII
@@ -82,6 +84,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13072}
     - Class: 114
       Script: {instanceID: 13116}
+    - Class: 114
+      Script: {instanceID: 14702}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 134
@@ -91,6 +95,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
@@ -701,7 +709,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: e4ce1543f2b1bb7d78c723cee24ab8a4
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: 
+    className: Multiplayer
   platform: 2
   scenePathNames:
   - Assets/Scenes/clouds.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/Server_S.O.W/src/Mac_no_clouds.app
+  playerPath: /Users/segalcalin/Documents/GitHub/Server_S.O.W/src/test2.app

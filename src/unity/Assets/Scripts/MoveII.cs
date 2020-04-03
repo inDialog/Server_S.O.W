@@ -58,7 +58,7 @@ public class MoveII : MonoBehaviour
 			else jumpTime = 0.5f;
 			jumpTime = Mathf.Clamp(jumpTime,0.1f, _rigidbody.mass);
 			jump = new Vector3(0, -gravity * jumpTime, 0);
-			print(jumpTime);
+			//print(jumpTime);
 
 		}
 		_rigidbody.AddForce(jump);
