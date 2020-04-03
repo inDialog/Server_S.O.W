@@ -5,14 +5,17 @@ using System.Collections.Generic;
 
 // define classed needed to deserialize recieved data
 [Serializable]
-public class Position {
+public class InfoPlayers {
     public Vector3 position;
     public int timestamp;
     public string id;
+    public Vector3 color;
+
+
 }
 [Serializable]
 public class Players {
-   public List<Position> players;
+   public List<InfoPlayers> players;
 }
 
 public class Multiplayer : MonoBehaviour
@@ -27,8 +30,8 @@ public class Multiplayer : MonoBehaviour
     //private List<GameObject> otherPlayers = new List<GameObject>();
     //private List<string> playersID = new List<GameObject>();
     Dictionary<string, GameObject> otherPlayers = new Dictionary<string, GameObject>();
-
-    WebSocket w = new WebSocket(new Uri("ws://localhost:8000"));
+    public string myColor;
+    WebSocket w = new WebSocket(new Uri("ws://www.in-dialog.com:3000/socket.io/?EIO=4&transport=websocket"));
     //System.Guid myGUID;
     System.Guid myGUID;
 
@@ -36,7 +39,8 @@ public class Multiplayer : MonoBehaviour
     {
         //myGUID = UnityEngine.Random.RandomRange(0, 1000).ToString() +"R2:"+ UnityEngine.Random.RandomRange(100, 1000).ToString();
         myGUID = System.Guid.NewGuid();
-        print(myGUID.ToString());
+        //print(myGUID.ToString());
+        //myColor = randomColor();
 
     }
 
@@ -47,9 +51,9 @@ public class Multiplayer : MonoBehaviour
         // connect to server
         yield return StartCoroutine(w.Connect());
         Debug.Log("CONNECTED TO WEBSOCKETS");
-
         // generate random ID to have idea for each client (feels unsecure)
         // wait for messages
+
         while (true)
         {
             // read message
@@ -59,9 +63,14 @@ public class Multiplayer : MonoBehaviour
             {
                 if (message.ToString() == "Conceted")
                 {
+                    w.SendString(myGUID + "\t" + myColor + "\t" + "color");
                     continue;
                 }
                 else if (message.ToString() == "Deleted")
+                {
+                    continue;
+                }
+                else if (message.ToString() == "color")
                 {
                     continue;
                 }
@@ -69,8 +78,8 @@ public class Multiplayer : MonoBehaviour
                 {
                     // deserialize recieved data
                     Players data = JsonUtility.FromJson<Players>(message);
-                    Debug.Log("PlayerCount: " + data.players.Count);
-                    Debug.Log("otherPlayers: " + otherPlayers.Count);
+                    //Debug.Log("PlayerCount: " + data.players.Count);
+                    //Debug.Log("otherPlayers: " + otherPlayers.Count);
                     SpawnPlayers(data);
                     UpdatePositions(data);
                 }
@@ -100,6 +109,7 @@ public class Multiplayer : MonoBehaviour
     {
         for (int i = 0; i < otherPlayers.Count; i++)
         {
+            //print(data.players[i].color.ToString());
             otherPlayers[data.players[i].id.ToString()].transform.position = Vector3.Lerp(otherPlayers[data.players[i].id.ToString()].transform.position, data.players[i].position, Time.deltaTime * 10F);
             // otherPlayers[i].transform.position = data.players[i].position;
         }
@@ -107,15 +117,19 @@ public class Multiplayer : MonoBehaviour
     void SpawnPlayers(Players data)
     {
         // if number of players is not enough, create new ones
-     
-            for (int i = 0; i < data.players.Count; i++)
-            {
-                Debug.Log(i + "data id " + data.players[i].id.ToString());
-                if (!otherPlayers.ContainsKey(data.players[i].id.ToString()))
-                    otherPlayers.Add(data.players[i].id.ToString(), Instantiate(otherPlayerObject, data.players[i].position, Quaternion.identity));
-            }
 
-}
+        for (int i = 0; i < data.players.Count; i++)
+        {
+            Debug.Log(i + "data color " + data.players[i].color.ToString());
+            if (!otherPlayers.ContainsKey(data.players[i].id.ToString()))
+            {
+                GameObject instance = Instantiate(otherPlayerObject, data.players[i].position, Quaternion.identity);
+                //instance.GetComponent<Renderer>().material.color = ;
+                otherPlayers.Add(data.players[i].id.ToString(), instance);
+            }
+        }
+
+    }
     private void SendPositions()
     {
         // check if player moved
@@ -129,10 +143,16 @@ public class Multiplayer : MonoBehaviour
             prevPosition = myPlayer.transform.position;
         }
     }
-    //public void Emit(string ev, JSONObject data)
-    //{
 
-    //    //Debug.Log(data["id"].ToString());
-    //    EmitMessage(-1, );
+    //string randomColor()
+    //{
+    //    return
+    // UnityEngine.Random.Range(0, 255).ToString() + "\t" +
+    // UnityEngine.Random.Range(0, 255) + "\t" +
+    // UnityEngine.Random.Range(0, 255);
+    //}
+    //Color Color()
+    //{
+    //    return new Color(data.players[i].color.x, data.players[i].color.y, data.players[i].color.z,225);
     //}
 }
