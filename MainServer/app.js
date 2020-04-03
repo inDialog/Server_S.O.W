@@ -18,7 +18,7 @@ wss.on('connection', function connection (client) {
     // chack for disconect 
     if(_data.includes('Disconected')){
     	var [udid,msg] = data.toString().split('\t')
-    	// delete players[udid];
+    	delete players[udid];
     	console.log('Client deisconected');
 		return;
     }

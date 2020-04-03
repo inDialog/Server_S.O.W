@@ -105,7 +105,7 @@ public class Multiplayer : MonoBehaviour
     void UpdatePositions(Players data)
     {
 
-        for (int i = 0; i < otherPlayers.Count; i++)
+        for (int i = 0; i < data.players.Count; i++)
         {
             //print(data.players[i].color.ToString());
 
@@ -116,7 +116,7 @@ public class Multiplayer : MonoBehaviour
     void SpawnPlayers(Players data)
     {
         // if number of players is not enough, create new ones
-
+        if(data.players.Count!= otherPlayers.Count)
         for (int i = 0; i < data.players.Count; i++)
         {
             Debug.Log(i + "data color " + data.players[i].color);
