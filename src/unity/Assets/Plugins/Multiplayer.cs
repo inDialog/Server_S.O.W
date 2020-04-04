@@ -21,6 +21,7 @@ public class Players {
 public class Multiplayer : MonoBehaviour
 {
 
+
     // define public game object used to visualize other players
     public GameObject otherPlayerObject;
     public GameObject myPlayer;
@@ -68,11 +69,16 @@ public class Multiplayer : MonoBehaviour
                     w.SendString(myGUID + "\t" + StringToCollor(myColor) + "\t" + "color");
                     continue;
                 }
-                else if (message.ToString() == "Deleted")
+                else if (message.ToString().Contains("Deleted"))
                 {
+                    string otherGUID = message.ToString().Split('@')[1];
+                    Debug.Log(" Deleted id: " + otherGUID);
+
+                    Destroy(otherPlayers[otherGUID].gameObject);
+                    otherPlayers.Remove(otherGUID);
+
                     continue;
                 }
-
 
                 // deserialize recieved data
                 Players data = JsonUtility.FromJson<Players>(message);
@@ -100,17 +106,20 @@ public class Multiplayer : MonoBehaviour
     }
     private void OnDisable()
     {
-        w.SendString(myGUID + "\t" + "Disconected");
+        //w.SendString(myGUID + "\t" + "Disconected");
+        w.Close();
+        print("disconect3d");
     }
+  
     void UpdatePositions(Players data)
     {
 
         for (int i = 0; i < data.players.Count; i++)
         {
-            //print(data.players[i].color.ToString());
-
-            otherPlayers[data.players[i].id.ToString()].transform.position = Vector3.Lerp(otherPlayers[data.players[i].id.ToString()].transform.position, data.players[i].position, Time.deltaTime * 10F);
-            // otherPlayers[i].transform.position = data.players[i].position;
+            string playerID = data.players[i].id.ToString();
+            //print(playerID);
+            if (otherPlayers.ContainsKey(playerID))
+                otherPlayers[playerID].transform.position = Vector3.Lerp(otherPlayers[playerID].transform.position, data.players[i].position, Time.deltaTime * 10F);
         }
     }
     void SpawnPlayers(Players data)
@@ -119,7 +128,7 @@ public class Multiplayer : MonoBehaviour
         if(data.players.Count!= otherPlayers.Count)
         for (int i = 0; i < data.players.Count; i++)
         {
-            Debug.Log(i + "data color " + data.players[i].color);
+            Debug.Log(i + "data id " + data.players[i].id.ToString());
             if (!otherPlayers.ContainsKey(data.players[i].id.ToString()))
             {
                 GameObject instance = Instantiate(otherPlayerObject, data.players[i].position, Quaternion.identity);

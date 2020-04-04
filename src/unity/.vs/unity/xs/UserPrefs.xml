@@ -1,22 +1,23 @@
 ﻿<Properties StartupConfiguration="{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/Multiplayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveII.cs">
     <Files>
       <File FileName="Assets/Shaders/VolumeRender.shader" Line="170" Column="1" />
-      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" Line="160" Column="62" />
-      <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" Line="8" Column="24" />
+      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" />
+      <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" />
       <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsBase.cs" />
       <File FileName="Assets/Scripts/VolRenderSettings.cs" />
-      <File FileName="Assets/Scripts/MoveII.cs" Line="61" Column="22" />
+      <File FileName="Assets/Scripts/MoveII.cs" Line="1" Column="1" />
       <File FileName="Assets/Shaders/Experimental/CloudsStructured_BiplaneTest.shader" />
       <File FileName="Assets/Shaders/Experimental/CloudsStructured3D_VS_EXPERIMENTAL.shader" />
       <File FileName="Assets/Scripts/Experimental/DDASampling.cs" />
       <File FileName="Assets/Scripts/PlatonicSolidBlend.cs" />
-      <File FileName="Assets/Plugins/Multiplayer.cs" Line="34" Column="77" />
+      <File FileName="Assets/Plugins/Multiplayer.cs" Line="101" Column="27" />
+      <File FileName="Assets/Plugins/WebSocket.cs" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d4fad666-1615-48cd-90e6-8cfc82f32feb" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c294c84c-cb39-4601-9d75-3ad98b250d8b" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
