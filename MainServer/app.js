@@ -83,4 +83,4 @@ function broadcastClose (id) {
 }
 
 // call broadcastUpdate every 0.1s
-setInterval(broadcastUpdate, 1S00)
+setInterval(broadcastUpdate, 100)
