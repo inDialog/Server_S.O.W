@@ -6,20 +6,21 @@
       <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" />
       <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsBase.cs" />
       <File FileName="Assets/Scripts/VolRenderSettings.cs" />
-      <File FileName="Assets/Scripts/MoveII.cs" Line="1" Column="1" />
-      <File FileName="Assets/Shaders/Experimental/CloudsStructured_BiplaneTest.shader" />
-      <File FileName="Assets/Shaders/Experimental/CloudsStructured3D_VS_EXPERIMENTAL.shader" />
-      <File FileName="Assets/Scripts/Experimental/DDASampling.cs" />
-      <File FileName="Assets/Scripts/PlatonicSolidBlend.cs" />
-      <File FileName="Assets/Plugins/Multiplayer.cs" Line="101" Column="27" />
-      <File FileName="Assets/Plugins/WebSocket.cs" />
+      <File FileName="Assets/Scripts/MoveII.cs" Line="65" Column="28" />
+      <File FileName="Assets/Plugins/Multiplayer.cs" />
+      <File FileName="Assets/Shaders/doublesided.shader" />
+      <File FileName="Assets/Scripts/AnimationCharacter.cs" />
+      <File FileName="Assets/Scripts/AniMainCharacter.cs" Line="37" Column="48" />
+      <File FileName="Library/PackageCache/com.unity.postprocessing@2.3.0/PostProcessing/Runtime/PostProcessLayer.cs" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c294c84c-cb39-4601-9d75-3ad98b250d8b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="bf91065c-3efd-476b-9df2-716a4e7527f5" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/segalcalin/Documents/GitHub/Server_S.O.W/src/unity/Assets/Scripts/AniMainCharacter.cs" relfile="Assets/Scripts/AniMainCharacter.cs" line="32" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

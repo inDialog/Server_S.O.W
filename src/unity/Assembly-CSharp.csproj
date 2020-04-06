@@ -63,11 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AniMainCharacter.cs" />
+    <Compile Include="Assets\Scripts\AnimationCharacter.cs" />
     <Compile Include="Assets\Scripts\Experimental\DDASampling.cs" />
     <Compile Include="Assets\Scripts\Experimental\L0_Isolines.cs" />
     <Compile Include="Assets\Scripts\Experimental\StructuredSampling3DTest.cs" />
     <Compile Include="Assets\Scripts\MoveII.cs" />
     <Compile Include="Assets\Scripts\PlatonicSolidBlend.cs" />
+    <Compile Include="Assets\Scripts\Remap.cs" />
     <Compile Include="Assets\Scripts\StructuredVolumeSampling.cs" />
     <Compile Include="Assets\Scripts\Utils\FollowSceneCam.cs" />
     <Compile Include="Assets\Scripts\Utils\HiResScreenShots.cs" />
@@ -87,6 +90,7 @@
     <None Include="Assets\Shaders\VolumeRender.shader" />
     <None Include="Assets\Shaders\Experimental\CloudsStructured_BiplaneTest.shader" />
     <None Include="Assets\Shaders\Camera.cginc" />
+    <None Include="Assets\Shaders\doublesided.shader" />
     <None Include="Assets\Shaders\Depth\Tests\ReceiveShadow.shader" />
     <None Include="Assets\Shaders\Scenes\SceneFogSpotlight.cginc" />
     <Reference Include="Unity.Timeline.Editor">

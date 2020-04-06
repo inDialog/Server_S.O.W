@@ -25,6 +25,8 @@ public class Multiplayer : MonoBehaviour
     // define public game object used to visualize other players
     public GameObject otherPlayerObject;
     public GameObject myPlayer;
+    public GameObject crena;
+
     public string url;
     //"ws://localhost:8000"
     private Vector3 prevPosition;
@@ -44,7 +46,7 @@ public class Multiplayer : MonoBehaviour
         myGUID = System.Guid.NewGuid();
         //print(myGUID.ToString());
         myColor = Color();
-        myPlayer.GetComponent<Renderer>().material.color = myColor;
+        crena.GetComponent<Renderer>().material.SetColor("_EmissionColor", myColor);
     }
 
     IEnumerator Start()
@@ -125,17 +127,18 @@ public class Multiplayer : MonoBehaviour
     void SpawnPlayers(Players data)
     {
         // if number of players is not enough, create new ones
-        if(data.players.Count!= otherPlayers.Count)
-        for (int i = 0; i < data.players.Count; i++)
-        {
-            Debug.Log(i + "data id " + data.players[i].id.ToString());
-            if (!otherPlayers.ContainsKey(data.players[i].id.ToString()))
+        if (data.players.Count != otherPlayers.Count)
+            for (int i = 0; i < data.players.Count; i++)
             {
-                GameObject instance = Instantiate(otherPlayerObject, data.players[i].position, Quaternion.identity);
-                instance.GetComponent<Renderer>().material.color = data.players[i].color;
-                otherPlayers.Add(data.players[i].id.ToString(), instance);
+                Debug.Log(i + "data id " + data.players[i].id.ToString());
+                if (!otherPlayers.ContainsKey(data.players[i].id.ToString()))
+                {
+                    GameObject instance = Instantiate(otherPlayerObject, data.players[i].position, Quaternion.identity);
+                    instance.GetComponent<Renderer>().material.SetColor("_EmissionColor", data.players[i].color);
+
+                    otherPlayers.Add(data.players[i].id.ToString(), instance);
+                }
             }
-        }
 
     }
     private void SendPositions()
@@ -162,9 +165,9 @@ public class Multiplayer : MonoBehaviour
     Color32 Color()
     {
         return new Color32(
-        (byte)UnityEngine.Random.Range(0, 255),
-        (byte)UnityEngine.Random.Range(0, 255),
-        (byte)UnityEngine.Random.Range(0, 255),
+        (byte)UnityEngine.Random.Range(0, 200),
+        (byte)UnityEngine.Random.Range(0, 200),
+        (byte)UnityEngine.Random.Range(0, 200),
         225);
     }
 
