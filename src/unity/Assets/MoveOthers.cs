@@ -28,11 +28,11 @@ public class MoveOthers : MonoBehaviour
         {
             if (moving)
             {
-                Debug.Log("Walk");
+                //Debug.Log("Walk");
                 animations.SetTrigger("Walk");
             }
             else
-                Debug.Log("idlWlak");
+                //Debug.Log("idlWlak");
                 animations.SetTrigger("idelGround");
 
         }
@@ -42,13 +42,13 @@ public class MoveOthers : MonoBehaviour
             if (curentP.y < pastPosition.y)
             {
                
-                    Debug.Log("ForwordUp");
+                    //Debug.Log("ForwordUp");
                     animations.SetTrigger("takeoff");
 
             }
             else
             {
-                Debug.Log("Floating");
+                //Debug.Log("Floating");
                 animations.SetTrigger("ForwordUp");
 
             }

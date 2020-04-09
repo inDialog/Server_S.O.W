@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StructuredVolumeSampling.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TextManager.cs">
     <Files>
       <File FileName="Assets/Scripts/MoveII.cs" Line="76" Column="47" />
       <File FileName="Assets/Shaders/doublesided.shader" />
       <File FileName="Assets/Scripts/AniMainCharacter.cs" />
-      <File FileName="Assets/Scripts/Remap.cs" />
-      <File FileName="Assets/Scripts/AnimationCharacter.cs" />
-      <File FileName="Assets/Plugins/Multiplayer.cs" />
-      <File FileName="Assets/MoveOthers.cs" />
-      <File FileName="Assets/TextManager.cs" />
+      <File FileName="Assets/Scripts/Remap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AnimationCharacter.cs" Line="17" Column="47" />
+      <File FileName="Assets/Plugins/Multiplayer.cs" Line="102" Column="45" />
+      <File FileName="Assets/TextManager.cs" Line="56" Column="1" />
+      <File FileName="Assets/MoveOthers.cs" Line="31" Column="37" />
       <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" Line="76" Column="1" />
+      <File FileName="Assets/Plugins/WebSocket.cs" Line="143" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

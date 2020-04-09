@@ -53,7 +53,7 @@ public class TextManager : MonoBehaviour
                 }
                 else if ((c == '\n') || (c == '\r')) // enter/return
                 {
-                    print("User entered their msg: " + myTextMesh.text);
+                    //print("User entered their msg: " + myTextMesh.text);
                     if (myName != "EnterName")
                     {
                         myTextMesh.color = multiplayer.myColor;

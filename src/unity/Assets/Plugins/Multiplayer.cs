@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using TMPro;
 // define classed needed to deserialize recieved data
 [Serializable]
 public class InfoPlayers {
@@ -10,18 +11,35 @@ public class InfoPlayers {
     public Color32 color;
     public int timestamp;
     public string id;
-
-
 }
 [Serializable]
 public class Players {
    public List<InfoPlayers> players;
 }
 
+[Serializable]
+public class MessegeInfo
+{
+    public Vector3 position;
+    public Vector3 rotation;
+    public string text;
+    public string id;
+
+    //public GameObject texObject;
+}
+[Serializable]
+public class TextMessages
+{
+    public List<MessegeInfo> messageS;
+}
+
+
 public class Multiplayer : MonoBehaviour
 {
     // define public game object used to visualize other players
     public GameObject otherPlayerObject;
+    public GameObject otherTextPrefab;
+
     public GameObject myPlayer;
     public GameObject crena;
 
@@ -29,6 +47,7 @@ public class Multiplayer : MonoBehaviour
     private Vector3 prevPosition;
     public Dictionary<string, GameObject> otherPlayers = new Dictionary<string, GameObject>();
     public Dictionary<string, InfoPlayers> infoPl = new Dictionary<string, InfoPlayers>();
+    public Dictionary<string, MessegeInfo> _messeges = new Dictionary<string, MessegeInfo>();
 
     public Color32 myColor;
     //WebSocket w = new WebSocket(new Uri("ws://www.in-dialog.com:3000/socket.io/?EIO=4&transport=websocket"));
@@ -65,6 +84,7 @@ public class Multiplayer : MonoBehaviour
             // check if message is not empty
             if (message != null)
             {
+
                 //Debug.Log(message.ToString());
                 if (message.ToString() == "Conceted")
                 {
@@ -80,6 +100,28 @@ public class Multiplayer : MonoBehaviour
                     otherPlayers.Remove(otherGUID);
                     infoPl.Remove(otherGUID);
 
+                    continue;
+                }
+                if (message.ToString().Contains("messageS"))
+                {
+                    
+                    Debug.Log(" Mesege : " + message.ToString());
+                    TextMessages inMeseges = JsonUtility.FromJson<TextMessages>(message);
+                    Debug.Log(" inMeseges : " + inMeseges.ToString());
+
+                    for (int i = 0; i < inMeseges.messageS.Count; i++)
+                    {
+                        Debug.Log(" xxxxx : " + inMeseges.messageS[i].position);
+                        if (!_messeges.ContainsKey(inMeseges.messageS[i].id)& myGUID.ToString()!=inMeseges.messageS[i].id)
+                        {
+                            string id = inMeseges.messageS[i].id;
+                           _messeges.Add(id, inMeseges.messageS[i]);
+                            GameObject iObject = Instantiate(otherTextPrefab);
+                            iObject.transform.SetPositionAndRotation(_messeges[id].position, Quaternion.Euler(_messeges[id].rotation));
+                            iObject.GetComponent<TextMeshPro>().text = inMeseges.messageS[i].text;
+                        }
+
+                    }
                     continue;
                 }
 
@@ -142,7 +184,7 @@ public class Multiplayer : MonoBehaviour
     {
         // check if player moved
         float distance = Vector3.Distance(prevPosition, myPlayer.transform.position);
-        if (distance > 0.01f)
+        if (distance > 0.05f)
         {
             // send update if position had changed
             w.SendString(FormatMessege(myPlayer.transform));
