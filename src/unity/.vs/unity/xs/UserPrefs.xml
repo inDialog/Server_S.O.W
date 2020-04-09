@@ -1,26 +1,22 @@
 ﻿<Properties StartupConfiguration="{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveII.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StructuredVolumeSampling.cs">
     <Files>
-      <File FileName="Assets/Shaders/VolumeRender.shader" Line="170" Column="1" />
-      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" />
-      <File FileName="Assets/Shaders/Scenes/SceneClouds.cginc" />
-      <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsBase.cs" />
-      <File FileName="Assets/Scripts/VolRenderSettings.cs" />
-      <File FileName="Assets/Scripts/MoveII.cs" Line="65" Column="28" />
-      <File FileName="Assets/Plugins/Multiplayer.cs" />
+      <File FileName="Assets/Scripts/MoveII.cs" Line="76" Column="47" />
       <File FileName="Assets/Shaders/doublesided.shader" />
+      <File FileName="Assets/Scripts/AniMainCharacter.cs" />
+      <File FileName="Assets/Scripts/Remap.cs" />
       <File FileName="Assets/Scripts/AnimationCharacter.cs" />
-      <File FileName="Assets/Scripts/AniMainCharacter.cs" Line="37" Column="48" />
-      <File FileName="Library/PackageCache/com.unity.postprocessing@2.3.0/PostProcessing/Runtime/PostProcessLayer.cs" />
+      <File FileName="Assets/Plugins/Multiplayer.cs" />
+      <File FileName="Assets/MoveOthers.cs" />
+      <File FileName="Assets/TextManager.cs" />
+      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" Line="76" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="bf91065c-3efd-476b-9df2-716a4e7527f5" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="6407915c-4e8d-4100-a046-220ca10f4abb" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/segalcalin/Documents/GitHub/Server_S.O.W/src/unity/Assets/Scripts/AniMainCharacter.cs" relfile="Assets/Scripts/AniMainCharacter.cs" line="32" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

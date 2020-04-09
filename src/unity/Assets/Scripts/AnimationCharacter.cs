@@ -56,7 +56,6 @@ public class AnimationCharacter : MonoBehaviour
                     }
                     parent.transform.rotation = Quaternion.Slerp(parent.transform.rotation, targetRotation, 10 * Time.deltaTime);
 
-
                 }
                 //}
                 else if (sRigidBody.velocity.y - pastVelocity.y < 0.01)

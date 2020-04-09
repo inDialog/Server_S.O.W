@@ -31,7 +31,7 @@ public class MoveII : MonoBehaviour
 	//   }
 	void FixedUpdate()
 	{
-		float _speed = 2;
+		float _speed = Time.deltaTime*70;
 		Vector3 jump = Vector3.zero;
 		transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * _speed, 0));
 
@@ -63,7 +63,10 @@ public class MoveII : MonoBehaviour
 			if (transform.position.y > -1)
 				jump = new Vector3(0, -gravity * jumpTime, 0);
 			else
-				jump = new Vector3(0, 0, 0);
+                if(_rigidbody.velocity != Vector3.zero)
+				_rigidbody.AddForce(new Vector3(0, -_rigidbody.velocity.y*10, 0));
+			
+
 
 			//print(jumpTime);
 
@@ -91,7 +94,11 @@ public class MoveII : MonoBehaviour
     {
 		grounded = true;
 	}
-    private void OnCollisionStay(Collision collision)
+	private void OnTriggerEnter(Collider other)
+	{
+		grounded = true;
+	}
+	private void OnCollisionStay(Collision collision)
     {
 
 	}

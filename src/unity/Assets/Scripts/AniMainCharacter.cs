@@ -14,7 +14,6 @@ public class AniMainCharacter : MonoBehaviour
     {
         sRigidBody = sphere.GetComponent<Rigidbody>();
         animations = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -28,7 +27,7 @@ public class AniMainCharacter : MonoBehaviour
          );
         transform.parent.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10 * Time.deltaTime);
 
-        print("hello" + DistanceToGround());
+        //print("hello" + DistanceToGround());
 
         if (DistanceToGround() < 30 & DistanceToGround()!=0)
         {

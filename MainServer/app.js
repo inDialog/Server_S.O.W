@@ -23,6 +23,7 @@ wss.on('connection', function connection (client) {
 	         players[udid] = 
 	         {
 	          position: {},
+	          rotation: {},
 	          color:{
 	             r: parseFloat(r),
 	             g: parseFloat(g),
@@ -35,16 +36,22 @@ wss.on('connection', function connection (client) {
 	      client.udid = udid
 	      console.log('ID+color bind assinged'  , players[udid]);
 	    return;
-	       
 	    }
 	    // Last option is UpdatePosition 
-	    var [udid, X, Y, Z,] =  data.toString().split('\t')
+	    var [udid, X, Y, Z,rX,rY,rZ] =  data.toString().split('\t')
+	    if (typeof  players[udid] != "undefined") {
 	      players[udid].position = {
 	             x: parseFloat(X),
 	             y: parseFloat(Y),
 	             z: parseFloat(Z)
 	      }
+	      players[udid].rotation = {
+	             x: parseFloat(rX),
+	             y: parseFloat(rY),
+	             z: parseFloat(rZ)
+	      }
 	    console.log('Position update,  data:' , players[udid]);
+	}
   });
 	client.on('close',function incoming (data) {
     	delete players[client.udid];
