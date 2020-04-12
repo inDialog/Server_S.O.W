@@ -5,37 +5,33 @@ using UnityEngine;
 public class MoveII : MonoBehaviour
 {
 
-	 float speed1 = 6f;
-	 float speed2 =1f;
-	 float speed3 = 5f;
+	static float speed1 = 200f;
+	static float speed2 =30f;
+	static float speed3 = 300f;
+	static float speed4 = 500f;
 
-	 float speed;
+
+	float speed;
 
 	public float gravity = 10.0f;
-	public float maxVelocityChange = 10.0f;
-	public float jumpHeight = 2.0f;
-	private bool grounded = true;
+	static float maxVelocityChange = 10.0f;
+	static float jumpHeight = 0.2f;
+	static bool grounded = true;
     public Rigidbody _rigidbody;
 	float jumpTime;
-
 
     void Awake()
 	{
 		_rigidbody.freezeRotation = true;
 		_rigidbody.useGravity = false;
 	}
-	//private void Update()
-	//   {
-
-
-	//   }
 	void FixedUpdate()
 	{
+		speed *= Time.deltaTime;
 		float _speed = Time.deltaTime*70;
 		Vector3 jump = Vector3.zero;
 		transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * _speed, 0));
-
-
+        
 		// Calculate how fast we should be moving
 		Vector3 targetVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
 		targetVelocity = transform.TransformDirection(targetVelocity);
@@ -54,6 +50,8 @@ public class MoveII : MonoBehaviour
 		{
 			jump = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 		}
+
+		// We apply gravity manually for more tuning control
 		else if (!grounded)
 		{
 			if (_rigidbody.velocity.y < 0.1f)
@@ -65,19 +63,14 @@ public class MoveII : MonoBehaviour
 			else
                 if(_rigidbody.velocity != Vector3.zero)
 				_rigidbody.AddForce(new Vector3(0, -_rigidbody.velocity.y*10, 0));
-			
-
-
-			//print(jumpTime);
-
 		}
 		else
 		{
 			_rigidbody.AddForce(new Vector3(0, -gravity, 0));
-
 		}
-
 		_rigidbody.AddForce(jump);
+
+		// Set speed 
 		if (grounded)
 			speed = speed2;
 		else
@@ -86,22 +79,24 @@ public class MoveII : MonoBehaviour
 		else
 			speed = speed1;
 		grounded = false;
+		if (Input.GetKey(KeyCode.RightShift)| Input.GetKey(KeyCode.RightShift))
+			speed = speed4;
+            
 
-		// We apply gravity manually for more tuning control
+
 	}
 
-    private void OnTriggerStay(Collider other)
+	private void OnTriggerStay(Collider other)
     {
-		grounded = true;
+		if (other.gameObject.tag == "ground")
+			grounded = true;
 	}
 	private void OnTriggerEnter(Collider other)
 	{
+        if(other.gameObject.tag=="ground")
 		grounded = true;
 	}
-	private void OnCollisionStay(Collision collision)
-    {
-
-	}
+   
 
     float CalculateJumpVerticalSpeed()
 	{
@@ -109,10 +104,6 @@ public class MoveII : MonoBehaviour
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(1000 * jumpHeight * gravity);
 	}
-
-
-
-
 }
 
 

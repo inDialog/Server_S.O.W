@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using TMPro;
+
 // define classed needed to deserialize recieved data
 [Serializable]
 public class InfoPlayers {
@@ -24,6 +25,7 @@ public class MessegeInfo
     public Vector3 rotation;
     public string text;
     public string id;
+    public GameObject textObject;
 
     //public GameObject texObject;
 }
@@ -32,7 +34,6 @@ public class TextMessages
 {
     public List<MessegeInfo> messageS;
 }
-
 
 public class Multiplayer : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class Multiplayer : MonoBehaviour
     //WebSocket w = new WebSocket(new Uri("ws://www.in-dialog.com:3000/socket.io/?EIO=4&transport=websocket"));
     //"ws://localhost:8000"
 
-   public  WebSocket w;
+    public WebSocket w;
     System.Guid myGUID;
     
     private void Awake()
@@ -65,6 +66,8 @@ public class Multiplayer : MonoBehaviour
         myColor = RandomColor();
         myColor.a = 225;
         crena.GetComponent<Renderer>().material.SetColor("_EmissionColor", myColor);
+        this.GetComponentInChildren<SpriteRenderer>().color = myColor;
+
     }
 
     IEnumerator Start()
@@ -105,20 +108,38 @@ public class Multiplayer : MonoBehaviour
                 if (message.ToString().Contains("messageS"))
                 {
                     
-                    Debug.Log(" Mesege : " + message.ToString());
+                    //Debug.Log(" Mesege : " + message.ToString());
                     TextMessages inMeseges = JsonUtility.FromJson<TextMessages>(message);
-                    Debug.Log(" inMeseges : " + inMeseges.ToString());
+                    //Debug.Log(" inMeseges : " + inMeseges.ToString());
 
                     for (int i = 0; i < inMeseges.messageS.Count; i++)
                     {
-                        Debug.Log(" xxxxx : " + inMeseges.messageS[i].position);
-                        if (!_messeges.ContainsKey(inMeseges.messageS[i].id)& myGUID.ToString()!=inMeseges.messageS[i].id)
+                        //Debug.Log(" xxxxx : " + inMeseges.messageS[i].position);/
+                        if (!_messeges.ContainsKey(inMeseges.messageS[i].id))
+                        {
+                            if (myGUID.ToString() != inMeseges.messageS[i].id)
+                            {
+                                string id = inMeseges.messageS[i].id;
+                                _messeges.Add(id, inMeseges.messageS[i]);
+                                _messeges[id].textObject = Instantiate(otherTextPrefab);
+
+                                _messeges[id].textObject.transform.SetPositionAndRotation(_messeges[id].position, Quaternion.Euler(_messeges[id].rotation));
+                                _messeges[id].textObject.GetComponent<TextMeshPro>().text = inMeseges.messageS[i].text;
+                            }
+                        }
+                        else
                         {
                             string id = inMeseges.messageS[i].id;
-                           _messeges.Add(id, inMeseges.messageS[i]);
-                            GameObject iObject = Instantiate(otherTextPrefab);
-                            iObject.transform.SetPositionAndRotation(_messeges[id].position, Quaternion.Euler(_messeges[id].rotation));
-                            iObject.GetComponent<TextMeshPro>().text = inMeseges.messageS[i].text;
+                            _messeges[id].position = inMeseges.messageS[i].position;
+                            _messeges[id].rotation = inMeseges.messageS[i].rotation;
+                            _messeges[id].text = inMeseges.messageS[i].text;
+
+
+                            _messeges[id].textObject.transform.SetPositionAndRotation(_messeges[id].position, Quaternion.Euler(_messeges[id].rotation));
+                            _messeges[id].textObject.GetComponent<TextMeshPro>().text = _messeges[id].text;
+
+                            //Debug.Log(" xxxxx : " + inMeseges.messageS[i].position);
+
                         }
 
                     }
@@ -166,6 +187,9 @@ public class Multiplayer : MonoBehaviour
                 GameObject instance = Instantiate(otherPlayerObject, data.players[i].position, Quaternion.identity);
                 instance.name = playerID;
                 instance.GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", data.players[i].color);
+                data.players[i].color.a = 225;
+                instance.GetComponentInChildren<SpriteRenderer>().color = data.players[i].color;
+
                 otherPlayers.Add(playerID, instance);
                 infoPl.Add(playerID, data.players[i]);
             }
