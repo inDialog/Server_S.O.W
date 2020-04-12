@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1615
     height: 955
-  m_MinSize: {x: 681, y: 492}
-  m_MaxSize: {x: 18004, y: 14042}
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 18002, y: 14042}
   vertical: 0
-  controlID: 1395
+  controlID: 33884
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1224
     height: 955
-  m_MinSize: {x: 405, y: 492}
-  m_MaxSize: {x: 14003, y: 14042}
+  m_MinSize: {x: 403, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 1
-  controlID: 1396
+  controlID: 33885
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,10 +163,10 @@ MonoBehaviour:
     y: 0
     width: 1224
     height: 684
-  m_MinSize: {x: 405, y: 221}
-  m_MaxSize: {x: 12005, y: 4021}
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 12003, y: 4021}
   vertical: 0
-  controlID: 1397
+  controlID: 33886
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -271,10 +271,10 @@ MonoBehaviour:
     y: 684
     width: 1224
     height: 271
-  m_MinSize: {x: 333, y: 271}
-  m_MaxSize: {x: 14003, y: 10021}
+  m_MinSize: {x: 332, y: 271}
+  m_MaxSize: {x: 14002, y: 10021}
   vertical: 0
-  controlID: 1259
+  controlID: 33801
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -475,9 +475,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 12d8ffff
-      m_LastClickedID: -10222
-      m_ExpandedIDs: fcd4ffff1cd5fffff4d5ffffaefaffff44fbffff
+      m_SelectedIDs: e253feff
+      m_LastClickedID: -109598
+      m_ExpandedIDs: e253feff44fbffff7c350000c6350000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -856,9 +856,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -21.55, y: 2.6100001, z: -45.77}
+    m_Target: {x: 0, y: 2.6100001, z: -5.1100006}
     speed: 2
-    m_Value: {x: -21.54997, y: 2.6099968, z: -45.76994}
+    m_Value: {x: 0, y: 2.6100001, z: -5.1100006}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -904,13 +904,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.11588832, y: 0.8666987, z: -0.2373577, w: -0.4231616}
+    m_Target: {x: 0.025672484, y: 0.89577496, z: 0.05218447, w: -0.44069096}
     speed: 2
-    m_Value: {x: -0.11588827, y: 0.86669827, z: -0.23735759, w: -0.4231614}
+    m_Value: {x: 0.025672441, y: 0.89577335, z: 0.052184384, w: -0.4406902}
   m_Size:
-    m_Target: 58.116844
+    m_Target: 13.556897
     speed: 2
-    m_Value: 55.774334
+    m_Value: 13.556897
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -10222
+  m_LastSelectedObjectID: -109598
 --- !u!114 &26
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1672,20 +1672,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Models
+    - Assets/Scripts/Interactions
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Models
+  - Assets/Scripts/Interactions
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/segalcalin/Documents/GitHub/Server_S.O.W/src/unity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 87.99927}
-    m_SelectedIDs: 82390000
-    m_LastClickedID: 14722
-    m_ExpandedIDs: 000000006c3900006e3900007039000072390000743900007639000000ca9a3b
+    scrollPos: {x: 0, y: 223}
+    m_SelectedIDs: 76390000
+    m_LastClickedID: 14710
+    m_ExpandedIDs: 000000004439000046390000483900004a3900004c3900004e3900007239000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1713,7 +1713,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006c3900006e3900007039000072390000743900007639000000ca9a3b
+    m_ExpandedIDs: 000000004439000046390000483900004a3900004c3900004e3900007239000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
