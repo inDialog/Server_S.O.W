@@ -19,7 +19,7 @@ public class MoveII : MonoBehaviour
 	static bool grounded = true;
     public Rigidbody _rigidbody;
 	float jumpTime;
-
+	public bool stop;
     void Awake()
 	{
 		_rigidbody.freezeRotation = true;
@@ -27,28 +27,31 @@ public class MoveII : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		speed *= Time.deltaTime;
-		float _speed = Time.deltaTime*70;
 		Vector3 jump = Vector3.zero;
-		transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * _speed, 0));
-        
-		// Calculate how fast we should be moving
-		Vector3 targetVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
-		targetVelocity = transform.TransformDirection(targetVelocity);
-		targetVelocity *= speed;
 
-		// Apply a force that attempts to reach our target velocity
-		Vector3 velocity = _rigidbody.velocity;
-		Vector3 velocityChange = (targetVelocity - velocity);
-		velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-		velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-		velocityChange.y = 0;
-		_rigidbody.AddForce(velocityChange, ForceMode.Impulse);
+		if (!stop)
+		{
+			speed *= Time.deltaTime;
+			float _speed = Time.deltaTime * 70;
+			transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * _speed, 0));
 
+			// Calculate how fast we should be moving
+			Vector3 targetVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
+			targetVelocity = transform.TransformDirection(targetVelocity);
+			targetVelocity *= speed;
+
+			// Apply a force that attempts to reach our target velocity
+			Vector3 velocity = _rigidbody.velocity;
+			Vector3 velocityChange = (targetVelocity - velocity);
+			velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+			velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+			velocityChange.y = 0;
+			_rigidbody.AddForce(velocityChange, ForceMode.Impulse);
+		}
 		// Jump
 		if (Input.GetButton("Jump"))
 		{
-			jump = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+			jump = new Vector3(_rigidbody.velocity.x, CalculateJumpVerticalSpeed(), _rigidbody.velocity.z);
 		}
 
 		// We apply gravity manually for more tuning control

@@ -16,7 +16,7 @@ public class TriggerText : MonoBehaviour
 
     private void Start()
     {
-        textUI =  GameObject.FindGameObjectWithTag("ArtistUI");
+        textUI = GameObject.FindGameObjectWithTag("ArtistUI");
         sDescription = textUI.GetComponentsInChildren<Text>()[0];
         lDescription = textUI.GetComponentsInChildren<Text>()[1];
         image = textUI.GetComponentsInChildren<Image>()[1];
@@ -44,20 +44,33 @@ public class TriggerText : MonoBehaviour
 
         }
     }
+
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+         [DllImport("__Internal")]
+	private static extern void openWindow(string url);
+
     void CustomButton_onClick()
     {
+
+        if (urlArtis.Contains("www"))
+        {
+         string Url_webpage = "http://" + urlArtis + "/";
+         openWindow(Url_webpage);
+        }
+
+    }
+#else
+    void CustomButton_onClick()
+    {
+
         if (urlArtis.Contains("www"))
         {
             Application.OpenURL("http://" + urlArtis + "/");
-            //Application.
+            print("App");
         }
-            //     Application.ExternalEval("window.open(\"http://www.unity3d.com\")");
-            //    Application.OpenURL("http://"+ urlArtis+ "/");
-            //Application.OpenURL("http://" + urlArtis + "/");
-            //Application.ExternalEval("window.open(\"http://" + urlArtis +"\"+")");
 
     }
-
-
+#endif
 }
 

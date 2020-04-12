@@ -10,9 +10,12 @@ public class Interactions : MonoBehaviour
     Vector3 scale = new Vector3(0.5f, 0.5f, 0.5f);
     GameObject _cameraObject;
     Vector3 originalPos;
+    Quaternion originalRot;
     Camera mainCamera;
     float originalFOV;
     int oiginalMask;
+    public Material matDefault;
+    public Material mat1;
 
     bool alreadyPassed;
     bool highQualety;
@@ -32,6 +35,7 @@ public class Interactions : MonoBehaviour
             _cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
             mainCamera = _cameraObject.GetComponent<Camera>();
             originalPos = _cameraObject.transform.localPosition;
+            originalRot = _cameraObject.transform.localRotation;
             originalFOV = mainCamera.fieldOfView;
             oiginalMask = mainCamera.cullingMask;
             alreadyPassed = true;
@@ -62,6 +66,7 @@ public class Interactions : MonoBehaviour
     ///
     void ScaleDown(GameObject camera)
     {
+        StopAllCoroutines();
         camera.transform.parent.transform.localScale = Vector3.Lerp(camera.transform.parent.transform.localScale, scale/10 ,2 *Time.deltaTime);//Crane Scale
         mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, originalFOV/2, 2 * Time.deltaTime);//Camera Field of View
 
@@ -81,26 +86,40 @@ public class Interactions : MonoBehaviour
     }
     void ZoomIn(GameObject camera)
     {
+        StopAllCoroutines();
         if (camera.transform.localPosition != Pos_FirstPerson)
         {
-            mainCamera.cullingMask = 0;
-            camera.GetComponent<StructuredVolumeSampling>().enabled = false;
-            Debug.Log(mainCamera.cullingMask);
             float speed = 10 * Time.deltaTime;
             camera.transform.localPosition = Vector3.MoveTowards(camera.transform.localPosition, Pos_FirstPerson, speed);
+            camera.GetComponent<StructuredVolumeSampling>().enabled = false;
+            RenderSettings.skybox = mat1;
+            mainCamera.transform.parent.GetComponent<MoveII>().stop = true;
+
         }
+        else
+        {
+            mainCamera.cullingMask = 0;
+            float _speed = Time.deltaTime * 70;
+            mainCamera.transform.Rotate(new Vector3(Input.GetAxis("Vertical") * _speed, 0, 0));
+            mainCamera.transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * _speed, 0));
+
+        }
+
     }
     private IEnumerator ZoomOut(GameObject camera)
     {
         while (true)
         {
-            camera.GetComponent<StructuredVolumeSampling>().enabled = true;
-            mainCamera.cullingMask = oiginalMask;
-            float speed = 10 * Time.deltaTime;
-            camera.transform.localPosition = Vector3.MoveTowards(camera.transform.localPosition, originalPos, speed);
 
+            mainCamera.cullingMask = oiginalMask;
+            float speed = 30 * Time.deltaTime;
+            camera.transform.localPosition = Vector3.MoveTowards(camera.transform.localPosition, originalPos, speed);
+            RenderSettings.skybox = matDefault;
             if (camera.transform.localPosition == originalPos)
             {
+            mainCamera.transform.localRotation = originalRot ;
+
+                mainCamera.transform.parent.GetComponent<MoveII>().stop = false;
                 break;
             }
             yield return null;
