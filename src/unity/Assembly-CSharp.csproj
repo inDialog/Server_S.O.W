@@ -69,7 +69,11 @@
     <Compile Include="Assets\Scripts\Experimental\DDASampling.cs" />
     <Compile Include="Assets\Scripts\Experimental\L0_Isolines.cs" />
     <Compile Include="Assets\Scripts\Experimental\StructuredSampling3DTest.cs" />
+    <Compile Include="Assets\Scripts\Interactions\Change_Camera.cs" />
+    <Compile Include="Assets\Scripts\Interactions\Change_Size.cs" />
+    <Compile Include="Assets\Scripts\Interactions\Interactions.cs" />
     <Compile Include="Assets\Scripts\MoveII.cs" />
+    <Compile Include="Assets\Scripts\MoveOthers.cs" />
     <Compile Include="Assets\Scripts\PlatonicSolidBlend.cs" />
     <Compile Include="Assets\Scripts\Remap.cs" />
     <Compile Include="Assets\Scripts\StructuredVolumeSampling.cs" />
@@ -80,7 +84,6 @@
     <Compile Include="Assets\Scripts\Utils\TestMotion.cs" />
     <Compile Include="Assets\Scripts\VolRenderSettings.cs" />
     <Compile Include="Assets\Shaders\Depth\SaveOutCamDepths.cs" />
-    <Compile Include="Assets\TextMesh Pro\Sprites\MoveOthers.cs" />
     <Compile Include="Assets\TriggerText.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

@@ -1,14 +1,18 @@
 ﻿<Properties StartupConfiguration="{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Disable_input.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StructuredVolumeSampling.cs">
     <Files>
       <File FileName="Assets/Scripts/MoveII.cs" Line="82" Column="73" />
       <File FileName="Assets/Scripts/AniMainCharacter.cs" />
-      <File FileName="Assets/Scripts/Remap.cs" />
-      <File FileName="Assets/Plugins/Multiplayer.cs" Line="6" Column="1" />
-      <File FileName="Assets/TriggerText.cs" Line="52" Column="6" />
+      <File FileName="Assets/Scripts/Remap.cs" Line="40" Column="9" />
+      <File FileName="Assets/Plugins/Multiplayer.cs" Line="163" Column="13" />
+      <File FileName="Assets/TriggerText.cs" Line="47" Column="32" />
       <File FileName="Assets/Scripts/TextManager.cs" Line="100" Column="4" />
-      <File FileName="Assets/TextMesh Pro/Sprites/MoveOthers.cs" Line="77" Column="77" />
+      <File FileName="Assets/TextMesh Pro/Sprites/MoveOthers.cs" Line="68" Column="1" />
       <File FileName="Assets/Scripts/Disable_input.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interactions/Interactions.cs" Line="32" Column="27" />
+      <File FileName="Assets/Scripts/Interactions/Change_Camera.cs" Line="67" Column="1" />
+      <File FileName="Assets/Scripts/Interactions/Change_Size.cs" Line="41" Column="160" />
+      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

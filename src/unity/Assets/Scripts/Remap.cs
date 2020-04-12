@@ -37,8 +37,6 @@ public static class ExtensionMethods
                 }
             }
         }
-
-
         return ports;
     }
   
