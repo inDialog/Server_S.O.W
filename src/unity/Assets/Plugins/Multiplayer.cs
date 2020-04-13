@@ -56,21 +56,24 @@ public class Multiplayer : MonoBehaviour
 
     public WebSocket w;
     System.Guid myGUID;
-    
-    private void Awake()
-    {
 
-        w = new WebSocket(new Uri(url));
-        myGUID = System.Guid.NewGuid();
-        print(myGUID.ToString());
+    private void Start()
+    {
         myColor = RandomColor();
         myColor.a = 225;
         crena.GetComponent<Renderer>().material.SetColor("_EmissionColor", myColor);
         this.GetComponentInChildren<SpriteRenderer>().color = myColor;
-
     }
+    private void OnEnable()
+    {
+        w = new WebSocket(new Uri(url));
+        myGUID = System.Guid.NewGuid();
+        print(myGUID.ToString());
+        StartCoroutine("Multyplayer");
+    }
+ 
 
-    IEnumerator Start()
+    IEnumerator Multyplayer()
     {
         // get player
 
@@ -169,6 +172,14 @@ public class Multiplayer : MonoBehaviour
     private void OnDisable()
     {
         w.Close();
+        StopAllCoroutines();
+        foreach (KeyValuePair<string, GameObject> entry in otherPlayers)
+        {
+            Destroy(entry.Value);
+        }
+        otherPlayers.Clear();
+        infoPl.Clear();
+        _messeges.Clear();
         print("disconect3d");
     }
 
@@ -199,7 +210,6 @@ public class Multiplayer : MonoBehaviour
                 {
                     infoPl[playerID].position = data.players[i].position;
                     infoPl[playerID].rotation = data.players[i].rotation;
-
                 }
             }
         }

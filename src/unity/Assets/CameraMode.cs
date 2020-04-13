@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CameraMode : MonoBehaviour
 {
+    public Toggle toggle;
     Camera mainCamera;
     GameObject originalState;
     float originalFOV;
@@ -94,7 +95,7 @@ public class CameraMode : MonoBehaviour
     {
         while (true)
         {
-            volumeSampling.enabled = true;
+            volumeSampling.enabled = toggle.isOn;
 
             float speed = 30 * Time.deltaTime;
             this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, originalState.transform.localPosition, speed);
