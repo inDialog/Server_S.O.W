@@ -19,62 +19,61 @@ public class AniMainCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Transform parent = sphere.transform.GetComponentInParent<Transform>();
-        Quaternion targetRotation = Quaternion.Euler(
-             sRigidBody.velocity.y.Remap(-8, 6, 100, -60),
-              parent.eulerAngles.y + Input.GetAxis("Horizontal") * 20,
-             parent.eulerAngles.z + Input.GetAxis("Horizontal") * -20
-         );
-        transform.parent.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10 * Time.deltaTime);
-
-        //print("hello" + DistanceToGround());
-        float distance = DistanceToGround();
-        if (distance < 30 & distance != 0)
+        if (sRigidBody.velocity != Vector3.zero)
         {
-            if (!Input.GetButton("Jump"))
+            Transform parent = sphere.transform.GetComponentInParent<Transform>();
+            Quaternion targetRotation = Quaternion.Euler(
+                 sRigidBody.velocity.y.Remap(-8, 6, 100, -60),
+                  parent.eulerAngles.y + Input.GetAxis("Horizontal") * 20,
+                 parent.eulerAngles.z + Input.GetAxis("Horizontal") * -20
+             );
+            transform.parent.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10 * Time.deltaTime);
+
+            if (ground)
             {
-                animations.SetBool("walk", true);
+                if (!Input.GetButton("Jump"))
+                {
+                    animations.SetBool("walk", true);
+                }
+                if (Input.GetAxis("Vertical") != 0 | Input.GetAxis("Horizontal") != 0)
+                    animations.SetBool("run", true);
+                else
+                    animations.SetBool("run", false);
+
             }
-            if (Input.GetAxis("Vertical") != 0 | Input.GetAxis("Horizontal") != 0)
-                animations.SetBool("run", true);
             else
-                animations.SetBool("run", false);
-
-        }
-        else
-        {
-            animations.SetBool("walk", false);
-            if (Input.GetButton("Jump"))
             {
-                animations.speed = 1.2f;
-                if (Input.GetAxis("Vertical") != 0)
-                    animations.SetTrigger("forowrdUP");
-                else
-                    animations.SetTrigger("takeOff");
-            }
-            else if (sRigidBody.velocity.y < 0)
-            {
-                animations.speed = 1f;
+                animations.SetBool("walk", false);
+                if (Input.GetButton("Jump"))
+                {
+                    animations.speed = 1.2f;
+                    if (Input.GetAxis("Vertical") != 0)
+                        animations.SetTrigger("forowrdUP");
+                    else
+                        animations.SetTrigger("takeOff");
+                }
+                else if (sRigidBody.velocity.y < 0)
+                {
+                    animations.speed = 1f;
 
-                if (Input.GetAxis("Vertical") != 0)
-                    animations.SetTrigger("forowrdUP");
-                else
-                    animations.SetTrigger("fall");
+                    if (Input.GetAxis("Vertical") != 0)
+                        animations.SetTrigger("forowrdUP");
+                    else
+                        animations.SetTrigger("fall");
+                }
             }
         }
     }
 
-
-    int DistanceToGround()
+    private void OnTriggerEnter(Collider other)
     {
-        RaycastHit hit;
-        Ray ray = new Ray(this.transform.position, transform.up * -1);
-        if (Physics.Raycast(ray, out hit))
-        {
-            if(hit.collider.tag=="ground")
-            return (int)(hit.distance*100);
-            else return 0;
-        }
-        else return 0;
+        if (other.gameObject.tag == "ground")
+            ground = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "ground")
+            ground = false;
     }
 }
+

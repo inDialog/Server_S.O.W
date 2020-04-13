@@ -1,22 +1,20 @@
 ﻿<Properties StartupConfiguration="{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Interactions/Interactions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveOthers.cs">
     <Files>
-      <File FileName="Assets/Scripts/MoveII.cs" Line="82" Column="73" />
-      <File FileName="Assets/Scripts/AniMainCharacter.cs" />
+      <File FileName="Assets/Scripts/MoveII.cs" Line="8" Column="25" />
+      <File FileName="Assets/Scripts/AniMainCharacter.cs" Line="23" Column="9" />
       <File FileName="Assets/Scripts/Remap.cs" />
-      <File FileName="Assets/Plugins/Multiplayer.cs" />
-      <File FileName="Assets/TriggerText.cs" />
-      <File FileName="Assets/Scripts/TextManager.cs" />
-      <File FileName="Assets/Scripts/Disable_input.cs" />
-      <File FileName="Assets/Scripts/Interactions/Interactions.cs" Line="97" Column="75" />
-      <File FileName="Assets/Scripts/Interactions/Change_Camera.cs" />
-      <File FileName="Assets/Scripts/Interactions/Change_Size.cs" />
-      <File FileName="Assets/Scripts/StructuredVolumeSampling.cs" />
+      <File FileName="Assets/Plugins/Multiplayer.cs" Line="163" Column="13" />
+      <File FileName="Assets/TriggerText.cs" Line="79" Column="1" />
+      <File FileName="Assets/Scripts/Disable_input.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TextManager.cs" Line="100" Column="4" />
+      <File FileName="Assets/CameraMode.cs" Line="36" Column="91" />
+      <File FileName="Assets/Scripts/MoveOthers.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="922a05ba-fad5-4d32-8883-61cb4ad27547" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0770e618-3d88-4e93-a345-2ef0972ba432" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

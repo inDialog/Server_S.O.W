@@ -72,7 +72,7 @@ public class MoveOthers : MonoBehaviour
         {
             if (multiplayer.infoPl[this.name].position != transform.position)
             {
-                float step = 1.5f * Time.deltaTime; // calculate distance to move
+                float step = 10f * Time.deltaTime; // calculate distance to move
                 transform.position = Vector3.MoveTowards(transform.position, multiplayer.infoPl[this.name].position, step);
                 //transform.position = multiplayer.infoPl[this.name].position;
                 transform.rotation = Quaternion.Euler(multiplayer.infoPl[this.name].rotation);

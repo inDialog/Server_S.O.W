@@ -5,22 +5,26 @@ using UnityEngine;
 public class MoveII : MonoBehaviour
 {
 
-	static float speed1 = 200f;
-	static float speed2 =30f;
-	static float speed3 = 300f;
-	static float speed4 = 500f;
+	static float speed1 = 150f;
+	static float speed2 =100f;
+	static float speed3 = 400f;
+	static float speed4 = 800f;
+	static float speed5 = 50;
+
 
 
 	float speed;
 
 	public float gravity = 10.0f;
 	static float maxVelocityChange = 10.0f;
-	static float jumpHeight = 0.2f;
+	static float jumpHeight = 0.1f;
 	static bool grounded = true;
     public Rigidbody _rigidbody;
 	float jumpTime;
 	public bool stop;
-    void Awake()
+	public bool small;
+
+	void Awake()
 	{
 		_rigidbody.freezeRotation = true;
 		_rigidbody.useGravity = false;
@@ -48,6 +52,18 @@ public class MoveII : MonoBehaviour
 			velocityChange.y = 0;
 			_rigidbody.AddForce(velocityChange, ForceMode.Impulse);
 		}
+		// Set speed 
+		if (small)
+			speed = speed5;
+		else if (grounded)
+			speed = speed2;
+		else if (Input.GetButton("Jump"))
+			speed = speed1;
+		else if (Input.GetKey(KeyCode.RightShift) | Input.GetKey(KeyCode.RightShift))
+			speed = speed4;
+		else
+			speed = speed3;
+
 		// Jump
 		if (Input.GetButton("Jump"))
 		{
@@ -64,8 +80,8 @@ public class MoveII : MonoBehaviour
 			if (transform.position.y > -1)
 				jump = new Vector3(0, -gravity * jumpTime, 0);
 			else
-                if(_rigidbody.velocity != Vector3.zero)
-				_rigidbody.AddForce(new Vector3(0, -_rigidbody.velocity.y*10, 0));
+				if (_rigidbody.velocity != Vector3.zero)
+				_rigidbody.AddForce(new Vector3(0, -_rigidbody.velocity.y * 10, 0));
 		}
 		else
 		{
@@ -73,18 +89,9 @@ public class MoveII : MonoBehaviour
 		}
 		_rigidbody.AddForce(jump);
 
-		// Set speed 
-		if (grounded)
-			speed = speed2;
-		else
-			if (!Input.GetButton("Jump"))
-			speed = speed3;
-		else
-			speed = speed1;
+
+
 		grounded = false;
-		if (Input.GetKey(KeyCode.RightShift)| Input.GetKey(KeyCode.RightShift))
-			speed = speed4;
-            
 
 
 	}

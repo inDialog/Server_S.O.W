@@ -99,8 +99,8 @@ public class TextManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            active = !active;
-            Move.enabled = !active;
+            active = false;
+            Move.enabled = true;
             myTextMesh.text = myName + ":" + "\n";
         }
 

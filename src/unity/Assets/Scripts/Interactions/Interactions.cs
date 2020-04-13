@@ -16,18 +16,9 @@ public class Interactions : MonoBehaviour
     int oiginalMask;
     public Material matDefault;
     public Material mat1;
-
     bool alreadyPassed;
-    bool highQualety;
 
-    //private void Start()
-    //{
-    //    _cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
-    //    mainCamera = _cameraObject.GetComponent<Camera>();
-    //    originalPos = _cameraObject.transform.localPosition;
-    //    originalFOV = mainCamera.fieldOfView;
-    //    oldMask = mainCamera.cullingMask;
-    //}
+  
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" & alreadyPassed == false)
