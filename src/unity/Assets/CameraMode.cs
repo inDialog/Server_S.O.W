@@ -71,6 +71,8 @@ public class CameraMode : MonoBehaviour
                 transform.localPosition = Vector3.MoveTowards(transform.localPosition, Pos_FirstPerson, speed);
                 volumeSampling.enabled = false;
                 mainCamera.cullingMask = 0;
+                mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView,80, 2 * Time.deltaTime);//Camera Field of View
+
             }
             else
             {
@@ -96,7 +98,7 @@ public class CameraMode : MonoBehaviour
         while (true)
         {
             volumeSampling.enabled = toggle.isOn;
-
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, originalFOV, 2 * Time.deltaTime);//Camera Field of View
             float speed = 30 * Time.deltaTime;
             this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, originalState.transform.localPosition, speed);
             if (this.transform.localPosition == originalState.transform.position)

@@ -50,6 +50,7 @@ public class TextManager : MonoBehaviour
                     {
                         if (myTextMesh.text.Length != myName.Length + 2)
                         {
+                            if(myTextMesh.text.Length>0)
                             myTextMesh.text = myTextMesh.text.Substring(0, myTextMesh.text.Length - 1);
                         }
                     }

@@ -76,6 +76,8 @@
     <Compile Include="Assets\Scripts\MoveII.cs" />
     <Compile Include="Assets\Scripts\MoveOthers.cs" />
     <Compile Include="Assets\Scripts\PlatonicSolidBlend.cs" />
+    <Compile Include="Assets\Scripts\Reaktion\Internal\Perlin.cs" />
+    <Compile Include="Assets\Scripts\Reaktion\Utility\TurbulentMotion.cs" />
     <Compile Include="Assets\Scripts\Remap.cs" />
     <Compile Include="Assets\Scripts\StructuredVolumeSampling.cs" />
     <Compile Include="Assets\Scripts\TextManager.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Scripts\Utils\ScreenCapture.cs" />
     <Compile Include="Assets\Scripts\Utils\TestMotion.cs" />
     <Compile Include="Assets\Scripts\VolRenderSettings.cs" />
+    <Compile Include="Assets\Scripts\sceneManger.cs" />
     <Compile Include="Assets\Shaders\Depth\SaveOutCamDepths.cs" />
     <Compile Include="Assets\TriggerText.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
