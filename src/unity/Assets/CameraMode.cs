@@ -117,21 +117,23 @@ public class CameraMode : MonoBehaviour
 
     void FreeCam()
     {
+        if (Input.GetMouseButton(0))
+        {
+            Camera mycam = GetComponent<Camera>();
 
-        Camera mycam = GetComponent<Camera>();
+            float sensitivity = 0.05f;
+            Vector3 vp = mycam.ScreenToViewportPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mycam.nearClipPlane));
+            vp.x -= 0.5f;
+            vp.y -= 0.5f;
+            vp.x *= sensitivity;
+            vp.y *= sensitivity;
+            vp.x += 0.5f;
+            vp.y += 0.5f;
+            Vector3 sp = mycam.ViewportToScreenPoint(vp);
 
-        float sensitivity = 0.05f;
-        Vector3 vp = mycam.ScreenToViewportPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mycam.nearClipPlane));
-        vp.x -= 0.5f;
-        vp.y -= 0.5f;
-        vp.x *= sensitivity;
-        vp.y *= sensitivity;
-        vp.x += 0.5f;
-        vp.y += 0.5f;
-        Vector3 sp = mycam.ViewportToScreenPoint(vp);
+            Vector3 v = mycam.ScreenToWorldPoint(sp);
+            mainCamera.transform.LookAt(v, Vector3.up);
 
-        Vector3 v = mycam.ScreenToWorldPoint(sp);
-        mainCamera.transform.LookAt(v, Vector3.up);
-
+        }
     }
 }
