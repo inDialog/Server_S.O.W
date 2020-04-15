@@ -32,9 +32,18 @@ public class CameraMode : MonoBehaviour
     {
         while (true)
         {
+            TrailRenderer[] tr = FindObjectsOfType<TrailRenderer>();
+
+            foreach (var item in tr)
+            {
+                item.enabled = false;
+            }
             moveII.small = true;
-            this.transform.parent.transform.localScale = Vector3.Lerp(this.transform.parent.transform.localScale, originalState.transform.localScale / 10, 2 * Time.deltaTime);//Crane Scale
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, originalFOV / 1.2f, 2 * Time.deltaTime);//Camera Field of View
+            float speed = 30 * Time.deltaTime;
+            transform.localRotation = Quaternion.Euler(Vector3.zero);
+            this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, originalState.transform.up - (originalState.transform.forward * 3), speed);
+            this.transform.parent.transform.localScale = Vector3.Lerp(this.transform.parent.transform.localScale, originalState.transform.localScale / 25, 2 * Time.deltaTime);//Crane Scale
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, originalFOV *2f, 2 * Time.deltaTime);//Camera Field of View
             if (this.transform.parent.transform.localScale == originalState.transform.localScale)
                 break;
 
@@ -50,7 +59,16 @@ public class CameraMode : MonoBehaviour
     {
         while (true)
         {
+            TrailRenderer[] tr = FindObjectsOfType<TrailRenderer>();
+            foreach (var item in tr)
+            {
+                item.enabled = true;
+            }
             moveII.small = false;
+            transform.localRotation = originalState.transform.rotation;
+
+            float speed = 30 * Time.deltaTime;
+            this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, originalState.transform.localPosition, speed);
             this.transform.parent.transform.localScale = Vector3.Lerp(this.transform.parent.transform.localScale, originalState.transform.localScale, 2 * Time.deltaTime);//Crane Scale
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, originalFOV, 2 * Time.deltaTime);//Camera Field of View
             if (this.transform.parent.transform.localScale == originalState.transform.localScale)
