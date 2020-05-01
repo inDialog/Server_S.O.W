@@ -1,3 +1,0 @@
-The helpful articles from William Chyr:
-
-http://williamchyr.com/2013/11/unity-shaders-depth-and-normal-textures/
